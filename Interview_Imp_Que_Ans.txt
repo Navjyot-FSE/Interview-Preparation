@@ -1,0 +1,76 @@
+What is .NET Core?
+.NET Core is a free, open-source, modular, cross-platform framework developed by Microsoft for building modern, high-performance applications.
+
+What is the difference between String and string in C#?
+"string" is an alias in the C# language for System. String. Both of them are compiled to System. String in IL (Intermediate Language), so there is no difference.
+
+What is the .NET Framework?
+a developer platform made up of tools, programming languages, and libraries for building many different types of applications.
+
+What is .NET Standard?
+.NET Standard is a formal specification of .NET APIs that are available on multiple .NET implementations. The motivation behind .NET Standard was to establish greater uniformity in the .NET ecosystem.
+
+What you understand by Value types and Reference types in .NET?
+Value Type - the variables of these data types directly contain values. (int, float, structure etc)
+Reference Type - a reference type doesn't store its value directly. Instead, it stores the address where the value is being stored. (class, string etc)
+
+What is Boxing and Unboxing?
+Boxing converts a Value Type variable into a Reference(object) Type variable
+Unboxing converts a Reference Type variable into a Value Type variable (Boxed back to original type)
+Example ->
+int num = 23;        // value type is int and assigned value 23
+Object Obj = num;    // Boxing
+int i = (int)Obj;    // Unboxing
+
+Difference between SDK and Runtime in .NET Core?
+SDK ==> to build and run .NET apps [SDK = Runtime + Tooling]
+Runtime ==> to run .NET apps
+
+difference between decimal, float and double in .NET?
+Float - 7 digits (32 bit)
+Double-15-16 digits (64 bit)
+Decimal -28-29 significant digits (128 bit)
+
+What is an unmanaged resource in .NET?
+Unmanaged resources are not managed by the . NET garbage collector. 
+These include resources like file handles, database connections, network sockets, graphics handles, or any other resource that the operating system provides.
+
+What is CLR?
+CLR is the basic and Virtual Machine component of the .NET Framework.
+
+Name some CLR services?
+Garbage collector, exception manager, threading, debugging, JIT compiler, Type safety.
+
+What is Kestrel?
+A cross-platform web server that runs on Windows, Linux, and macOS.
+
+Explain two types of deployment for .NET Core applications?
+Framework-Dependent Deployment (FDD) and Self-Contained Deployment (SCD). 
+The first one depends on a system-wide version of . NET Core to be present before running the application, 
+whereas the second type of deployment does not depend on any .
+
+Explain the difference between Task and Thread in .NET?
+A task can have multiple processes happening at the same time. Threads can only have one task running at a time.
+
+What is CoreCLR?
+CoreCLR is the runtime for .NET Core.
+
+Why to use of the IDisposable interface?
+The primary use of the IDisposable interface is to release unmanaged resources
+
+What is Explicit Compilation?
+An explicit compiler compiles the source code into machine code prior to the execution of the program. (in short AOT Compilation)
+
+What is JIT compiler?
+It is called just-in-time since it converts the MSIL code to CPU native code; 
+when it is required within code execution otherwise it will not do anything with that MSIL code.
+
+What's the difference between RyuJIT and Roslyn?
+Roslyn is a . NET Core compiler that compiles VB or C# code to the intermediate language (IL). 
+Whereas, RyuJIT as the name suggests is a Just-In-Time compiler that works the other way around i.e. compiles the IL to native code.
+
+Explain how does Asynchronous tasks Async/Await work in .NET? Related To: C#
+Suppose we are using two methods as, Method1 and Method2, respectively, and both methods are not dependent on each other, and Method1 takes a long time to complete its task. 
+In Synchronous programming, it will execute the first Method1, wait for the completion of this method, and then execute Method2. 
+Thus, it will be a time-intensive process even though both methods are not depending on each other.
+if any third Method, as Method3 has a dependency on method1, it will wait for the completion of Method1 with the help of await keyword.
