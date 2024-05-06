@@ -1,0 +1,14 @@
+D:\dotNetFun\OperatorOverloading_MethodExtention\bin\Debug\net8.0\OperatorOverloading_MethodExtention.exe
+D:\dotNetFun\OperatorOverloading_MethodExtention\bin\Debug\net8.0\OperatorOverloading_MethodExtention.deps.json
+D:\dotNetFun\OperatorOverloading_MethodExtention\bin\Debug\net8.0\OperatorOverloading_MethodExtention.runtimeconfig.json
+D:\dotNetFun\OperatorOverloading_MethodExtention\bin\Debug\net8.0\OperatorOverloading_MethodExtention.dll
+D:\dotNetFun\OperatorOverloading_MethodExtention\bin\Debug\net8.0\OperatorOverloading_MethodExtention.pdb
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\OperatorOverloading_MethodExtention.GeneratedMSBuildEditorConfig.editorconfig
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\OperatorOverloading_MethodExtention.AssemblyInfoInputs.cache
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\OperatorOverloading_MethodExtention.AssemblyInfo.cs
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\OperatorOverloading_MethodExtention.csproj.CoreCompileInputs.cache
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\OperatorOverloading_MethodExtention.dll
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\refint\OperatorOverloading_MethodExtention.dll
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\OperatorOverloading_MethodExtention.pdb
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\OperatorOverloading_MethodExtention.genruntimeconfig.cache
+D:\dotNetFun\OperatorOverloading_MethodExtention\obj\Debug\net8.0\ref\OperatorOverloading_MethodExtention.dll
