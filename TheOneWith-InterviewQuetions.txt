@@ -412,11 +412,11 @@ Q324: What is jagged array in C# and when to prefer jagged arrays over multi-dim
 Q325: Why Abstract class can not be sealed or static?  
 Q326: What are the benefits of a Deferred Execution in LINQ?  Related To: LINQ
 Q327: Could you explain the difference between destructor, dispose and finalize method?  
-Q328: What are the differences between IEnumerable and IQueryable?  
+Q328: What are the differences between IEnumerable and IQueryable? (Check: IEnumerator vs IEnumerable)
 Q329: What is the difference between Lambdas and Delegates?  
 Q330: What is the method MemberwiseClone() doing?  
 Q331: What's the difference between the System.Array.CopyTo() and System.Array.Clone()?  
-Q332: What are Circular References in C#?  
+Q332: What are Circular References in C#?   
 Q333: What is deep or shallow copy concept in C#?  
 Q334: List some different ways for equality check in .NET  
 Q335: What is a preprocessor directives in C#?  
