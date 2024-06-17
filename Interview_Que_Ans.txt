@@ -1,0 +1,311 @@
+===================================
+.Net Core
+===================================
+What is .NET Core?
+.NET Core is a free, open-source, modular, cross-platform framework developed by Microsoft for building modern, high-performance applications.
+
+What is the difference between String and string in C#?
+"string" is an alias in the C# language for System. String. Both of them are compiled to System. String in IL (Intermediate Language), so there is no difference.
+
+What is the .NET Framework?
+a developer platform made up of tools, programming languages, and libraries for building many different types of applications.
+
+What is .NET Standard?
+.NET Standard is a formal specification of .NET APIs that are available on multiple .NET implementations. 
+The motivation behind .NET Standard was to establish greater uniformity in the .NET ecosystem.
+
+What you understand by Value types and Reference types in .NET?
+Value Type - the variables of these data types directly contain values. (int, float, structure etc)
+Reference Type - a reference type doesn't store its value directly. Instead, it stores the address where the value is being stored. (class, string etc)
+
+What is Boxing and Unboxing?
+Boxing converts a Value Type variable into a Reference(object) Type variable
+Unboxing converts a Reference Type variable into a Value Type variable (Boxed back to original type)
+Example ->
+int num = 23;        // value type is int and assigned value 23
+Object Obj = num;    // Boxing
+int i = (int)Obj;    // Unboxing
+
+What are some characteristics of .NET Core?
+- Open Source
+- Cross-Platform
+- High Performance
+- Modular and Lightweight
+- CLI Tools
+- Docker Support
+- Microservices Architecture
+- Security
+
+What is the difference between .NET Core and Mono?
+.NET Core is a modern, high-performance, cross-platform framework aimed at cloud and web applications, while Mono is an older implementation focused on cross-platform support and mobile development, now integrated into the unified .NET ecosystem.
+
+Difference between SDK and Runtime in .NET Core?
+.NET Core Runtime is essential for running applications, while the .NET Core SDK is essential for developing and building applications. 
+The SDK includes the runtime, but also provides additional tools and libraries necessary for the development process.
+SDK ==> to build and run .NET apps [SDK = Runtime(CLR) + Tooling(CTS, GC, )]
+Runtime ==> to run .NET apps [CLR]
+
+Difference between decimal, float and double in .NET?
+Float - 7 digits (32 bit)
+Double - 15-16 digits (64 bit)
+Decimal - 28-29 significant digits (128 bit)
+
+What is an unmanaged resource in .NET?
+Unmanaged resources are not managed by the .NET garbage collector. 
+These include resources like file handles, database connections, network sockets, graphics handles, or any other resource that the operating system provides.
+
+What is CLR?
+CLR is the basic and Virtual Machine component of the .NET Framework.
+CLR is the execution engine for .NET applications, providing essential services such as memory management, security, exception handling, and interoperability, which enable the development of efficient, secure, and reliable applications.
+
+What is CTS?
+Common Type System (CTS) is a critical part of the .NET framework that defines how types are declared, used, and managed, ensuring interoperability, type safety, and consistency across different .NET languages.
+
+What is a .NET application domain?
+- application domains provide a way to isolate executed applications within the same process, enhancing security, stability, and resource management. 
+While application domains are still available in .NET Framework, .NET Core and later versions use AssemblyLoadContext for similar purposes.
+- Example 
+1. AppDomain newDomain = AppDomain.CreateDomain("NewAppDomain");
+   newDomain.ExecuteAssembly("ExampleAssembly.dll");
+   AppDomain.Unload(newDomain);
+2. 
+   var context = new AssemblyLoadContext("NewAssemblyLoadContext", isCollectible: true);
+   var assembly = context.LoadFromAssemblyPath("/path/to/ExampleAssembly.dll");
+   var type = assembly.GetType("ExampleNamespace.ExampleClass");
+   var method = type.GetMethod("ExampleMethod");
+   method.Invoke(null, null);
+   context.Unload();
+
+Name some CLR services?
+Memory management(Garbage collector), exception manager, thread management, debugging, JIT compiler, Type safety.
+
+What is .NET Standard and why we need to consider it?
+.NET Standard is crucial for creating libraries that work across multiple .NET platforms, promoting code reusability, consistency, and compatibility within the .NET ecosystem. Considering .NET Standard helps developers build versatile, future-proof libraries that can be easily shared and maintained across different types of applications.
+
+What is MSIL?
+MSIL (Microsoft Intermediate Language) is a crucial part of the .NET framework, acting as the intermediate code between high-level .NET languages and machine code. Its CPU-independence, managed code features, and role in the JIT compilation process make it central to the cross-platform capabilities and performance optimization of .NET applications. By understanding MSIL, developers can appreciate the underlying workings of the .NET runtime and how it enables language interoperability and platform portability.
+
+What's the difference between .NET Core, .NET Framework, and Xamarin?
+.NET Core --> is the future-forward, cross-platform, and high-performance framework ideal for modern applications and cloud services.
+.NET Framework --> remains crucial for Windows-based enterprise applications and legacy systems.
+Xamarin --> specializes in mobile development, allowing for cross-platform app creation with a shared codebase.
+
+What is Kestrel?
+A cross-platform web server that runs on Windows, Linux, and macOS.
+
+What is difference between .NET Core and .NET Framework?
+.NET Core is the preferred choice for new, cross-platform, and cloud-native applications due to its performance, flexibility, and modern development features.
+.NET Framework remains crucial for legacy systems and applications that rely on Windows-specific features and extensive existing libraries.
+
+Explain what is included in .NET Core?
+.NET Core includes a robust runtime environment (CoreCLR), cross-platform support, development tools, modular design, frameworks for web and cloud development, high performance, security features, and strong community support. It is designed to empower developers to build modern, scalable, and cross-platform applications efficiently.
+
+Explain two types of deployment for .NET Core applications?
+Framework-Dependent Deployment (FDD) --> depends on a system-wide version of .NET Core to be present before running the application (IIS)
+Self-Contained Deployment (SCD) --> does not depend on any versions (Docker)
+
+Is there a way to catch multiple exceptions at once and without code duplication?  Related To: C#
+- You can use a single catch block to catch multiple exceptions at once using the when keyword. This approach helps avoid code duplication and allows you to handle different types of exceptions in a unified manner.
+Example
+try{...}
+catch (ExceptionType1 ex) when (Condition1){...}
+catch (ExceptionType2 ex) when (Condition2){...}
+catch (Exception ex){...}
+
+Explain the difference between Task and Thread in .NET?
+- Task is a higher-level abstraction for asynchronous operations, managed by the ThreadPool, with built-in support for cancellation, exception handling, and composition. (A task can have multiple processes happening at the same time.)
+- Thread is a lower-level abstraction representing an OS-level thread, offering direct control over thread creation, management, and synchronization, but requiring more manual resource management and synchronization.(Threads can only have one task running at a time.)
+
+What is CoreCLR?
+CoreCLR is the runtime for .NET Core.
+
+Why to use of the IDisposable interface?
+The primary use of the IDisposable interface is to release unmanaged resources
+
+What are the benefits of Explicit Compilation (AOT)?
+AOT compilation offers significant benefits in terms of performance, memory efficiency, predictability, security, and platform compatibility, making it a valuable approach for optimizing applications in various scenarios, particularly those with stringent performance and resource constraints.
+
+When should we use .NET Core and .NET Standard Class Library project types?
+choose between .NET Core and .NET Standard Class Library project types based on the specific platform compatibility requirements and target frameworks of your library
+
+What's is BCL?
+Base Class Library (BCL) forms the essential building blocks of .NET applications, offering a comprehensive set of APIs and functionalities that support a wide range of development scenarios, from desktop applications to web services and beyond.
+
+What is Explicit Compilation?
+- AOT Compilation
+
+###What is the difference between Class Library (.NET Standard) and Class Library (.NET Core)?
+-
+
+What is FCL?
+Framework Class Library (FCL) is a critical component of the .NET Framework, offering a comprehensive set of APIs and functionalities that developers use to build robust and feature-rich applications for Windows and other Microsoft platforms.
+
+Explain the difference between Managed and Unmanaged code in .NET?
+- Managed Code: Choose managed code for most application development scenarios due to its ease of development, automatic memory management, and built-in security features.
+- Unmanaged Code: Use unmanaged code when performance is critical, or when interacting with low-level system resources that require direct control over memory and system calls.
+
+What is JIT compiler?
+It is called just-in-time since it converts the MSIL code to CPU native code; 
+when it is required within code execution otherwise it will not do anything with that MSIL code.
+
+What does Common Language Specification (CLS) mean?
+Common Language Specification (CLS) plays a crucial role in ensuring language interoperability within the .NET Framework by defining a common set of rules and guidelines that all .NET languages should follow.
+
+What is the difference between .NET Standard and PCL (Portable Class Libraries)?
+ .NET Standard and Portable Class Libraries (PCLs) aim to facilitate cross-platform development within the .NET ecosystem, .NET Standard offers a more comprehensive and future-proof approach with broader platform compatibility compared to the predefined profiles of PCLs.
+**PCL >> .Net Standard >> .Net Core
+
+What about MVC in .NET Core?  Related To: ASP.NET MVC
+MVC in .NET Core provides a structured and efficient approach to building web applications, emphasizing separation of concerns, flexibility, and extensibility. It leverages modern web development practices and integrates well with other parts of the ASP.NET Core ecosystem to deliver robust and scalable solutions.
+
+Does .NET support Multiple Inheritance?  Related To: OOP
+No
+
+What is the difference between .NET Framework/Core and .NET Standard Class Library project types?
+.NET Framework/Core and .NET Standard Class Library project types depends on your application's platform requirements, target environments, and the level of compatibility and reusability you need across different .NET implementations.
+
+What's the difference between RyuJIT and Roslyn?
+- Roslyn is a .NET Core compiler that compiles VB or C# code to the intermediate language (IL). 
+- RyuJIT is a Just-In-Time compiler that works the other way around i.e. compiles the IL to native code.
+
+Explain how does Asynchronous tasks Async/Await work in .NET? Related To: C#
+Suppose we are using two methods as, Method1 and Method2, respectively, and both methods are not dependent on each other, and Method1 takes a long time to complete its task. 
+In Synchronous programming, it will execute the first Method1, wait for the completion of this method, and then execute Method2. 
+Thus, it will be a time-intensive process even though both methods are not depending on each other.
+if any third Method, as Method3 has a dependency on method1, it will wait for the completion of Method1 with the help of await keyword.
+
+What is the difference between AppDomain, Assembly, Process and a Thread?
+- A program is executed. A process is created by the operating system, and within its single thread it starts loading code to execute. 
+In a .NET application, a single AppDomain is created by the CLR. The application's executing assembly (the .EXE) is loaded into this AppDomain and begins execution. 
+The application can spawn new processes, create AppDomains, load other assemblies into these domains, and then create new Threads to execute code in any of these AppDomains.
+An assembly holds one or more modules, which hold compiled chunks of code. You will typically see an assembly as an .EXE or a .DLL.
+- (in short) Application Start >> Process Created >> Single (master)Thread Created inside Process >> Thread will create single AppDomain to run application
+
+###How to choose the target version of .NET Standard library?
+-
+
+Why does .NET use a JIT compiler instead of just compiling the code once on the target machine?
+As opposed to static compilers, which convert everything to machine code before execution, 
+the JIT compiler performs the conversion continuously during program execution, while often caching compiled blocks of native code, 
+thereby reducing pieces of IL code that are translated again and again to the same native code.
+
+Explain Implicit Compilation process? [JIT Compilation]
+Implicit compilation is a two-step process. 
+The first step is converting the source code to intermediate language (IL) by a language-specific compiler. 
+The second step is converting the IL to machine instructions.
+
+What are benefits of using JIT?
+JIT compilation plays a crucial role in enhancing the performance, adaptability, and security of .NET applications, making it a fundamental component of the runtime environment and contributing to the popularity and effectiveness of the .NET platform.
+
+What is the difference between CIL and MSIL (IL)?
+- CIL is the standardized bytecode instruction set defined by the CLI specification, ensuring platform independence and interoperability.
+- MSIL (IL) specifically refers to the implementation of CIL within the .NET Framework, used as the intermediate representation of .NET programs.
+
+Why does .NET Standard library exist?
+the existence of .NET Standard addresses fundamental challenges in the .NET ecosystem related to code sharing, cross-platform compatibility, interoperability, future-proofing, and simplified development. 
+It serves as a crucial foundation for building reusable libraries and components that can be seamlessly integrated into diverse .NET applications running on various platforms.
+
+Explain when to use Finalize vs Dispose?  Related To: C#
+- Finalize is used for final cleanup of unmanaged resources by the garbage collector
+- Dispose is used for timely cleanup of both managed and unmanaged resources by user code.
+
+What is Explicit Compilation? [AOT Compilation]
+An explicit compiler compiles the source code into machine code prior to the execution of the program. (in short AOT Compilation)
+
+Explain when to use Finalize vs Dispose?
+Finalize gives implicit control over releasing resources. It is called by the garbage collector. (Finalize is not called by your code.)
+Dispose is a way to give explicit control over a release of resources and can be called directly. (Dispose is usually called by your code.)
+
+What is the difference between Node.js async model and async/await in .NET?
+Node. js is asynchronously single-threaded, while ASP.NET is asynchronously multi-threaded. 
+
+How many types of JIT Compilations do you know?
+Three types
+Pre-JIT Compiler (Compiles entire code into native code completely) 
+Econo JIT Compiler (Compiles code part by part freeing when required) 
+Normal JIT Compiler (Compiles only that part of code when called and places in cache)
+
+Could you name the difference between .Net Core, Portable, Standard, Compact, UWP, and PCL?
+- NET Core: Cross-platform framework for modern applications.
+- .NET Portable: Refers to Portable Class Libraries (PCLs) targeting specific platform combinations.
+- .NET Standard: Unified API specification for all .NET implementations.
+- .NET Compact Framework: For resource-constrained devices like Windows Mobile.
+- Universal Windows Platform (UWP): Windows 10 framework for all device types.
+- Portable Class Libraries (PCL): Deprecated, used for targeting specific platform profiles.
+
+======================================
+C# & OOPs
+======================================
+What is a Framework and what does the .NET Framework provide?
+A framework is a structure that you can build software on. It serves as a foundation, so you're not starting entirely from scratch.
+
+Explain CLR and its Execution Process.
+Source Code -> Language Complier -> (DLL/EXE)MSIL code -> JIT Compiler -> Native Code (Computer code)
+
+Assembly/Meta Data/Assembly Manifest/MSIL CODE?
+(.DLL or .EXE)Assembly = MSIL Code + assembly manifest + type metadata + resources.
+Assembly Manifest -> is part of the assembly that describers set of files inside the assembly
+MSIL Code - Code the compiler produced as it compiled the source code.
+Type MetaData -> Metadata Every managed module contains metadata tables. There are two main types of tables: tables that describe the types and members defined in your source code and tables that describe the types and members referenced by your source code.
+
+What is the difference between an EXE and a DLL?
+EXE file is like a standalone app that you can run directly on your computer. 
+DLL file is more like a helper that other apps call on to use its tools or features, but you can't run it by itself.
+
+What’s the difference between IEnumerable<T> and List<T>?
+with a List<T> you can add and remove items,
+while with an IEnumerable<T> you can only iterate over the items.
+
+Why class is called abstract data type?
+A class containing varoius objects implies a set of data members along with their operations to be performed. 
+The handling of instance variables is done through member methods of a class. 
+This is the reason why a class is known as an abstract data type.
+
+What is a verbatim string literal and why do we use it?
+@"hello"	Basically the @ symbol tells the string constructor to ignore escape characters and line breaks.
+Example - filepath > @"\\MyServer\TestFolder\NewFolder";
+
+What are Properties in C#? Explain with an example?
+Properties enable a class to expose a public way of getting and setting values, while hiding implementation or verification code. 
+A get property accessor is used to return the property value, and a set property accessor is used to assign a new value.
+Advantages of Using Properties
+Properties also validate the data before storing it in the data fields. Fields can be made read-only or write-only using the properties. Properties make the program flexible. Flexibility means the programmer can change one part of the code without affecting other parts.
+
+Can you use virtual, override, or abstract keywords on an accessor of a static property? 
+It is an error to use a virtual, abstract, or override modifier on an accessor of a static property.
+
+What are Access Modifiers in C#?
+#1
+Public, Private, Protected, Internal
+protected internal, private protected
+file - for that file (C# 11)
+#2
+Class, struct - > internal(default)
+[class] Methods, Fields -> private(default)
+[struct] Methods, Fields -> public(default)
+delegate -> internal (namespace), private (class/struct)
+Interface, Enum -> public(default)
+#3
+class -> (Public, internal, protected internal, private)
+struct -> (public, internal, private) (Protected - no supported)
+enum -> public, internal, private
+fileds (in class/struct) -> public, private, protected, internal, protected internal
+
+Can derived classes have greater accessibility than their base types?
+Derived classes can't have greater accessibility than their base types.
+
+What do you mean by “Explicitly Implementing an Interface”? Give an example?
+class SampleClass : IControl, ISurface
+{
+	void IControl.Paint()
+	{
+		//code here
+	}
+	void ISurface.Paint()
+	{
+		//code here
+	}
+}
+
+What is the execution control flow of overloaded methods?
+Method Call -> Argument Matching -> Best Match Selection -> Method Execution -> Return Value
