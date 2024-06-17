@@ -1,0 +1,85 @@
+======================================
+C# & OOPs
+======================================
+What is COM and what are the disadvantages of COM?
+COM (Component Object Model) has been a foundational technology for component-based development on Windows.
+
+What .NET Represents?
+.NET represents a unified and versatile ecosystem that empowers developers to create diverse types of applications efficiently, leveraging a rich set of tools, libraries, and language options, while ensuring performance, security, and maintainability.
+
+What is a Framework and what does the .NET Framework provide?
+A framework is a structure that you can build software on. It serves as a foundation, so you're not starting entirely from scratch.
+
+Explain CLR and its Execution Process.
+Source Code (High Level) -> Language Complier -> (DLL/EXE)MSIL code -> JIT Compiler -> Native Code (Low Level)(Computer code)
+
+What is exactly .NET?
+.NET is a powerful and versatile framework that provides a unified platform for developing a wide range of applications across different devices and operating systems, leveraging multiple programming languages and extensive libraries and tools provided by Microsoft and the .NET community.
+
+Assembly/Meta Data/Assembly Manifest/MSIL CODE?
+(.DLL or .EXE)Assembly = MSIL Code + assembly manifest + type metadata + resources.
+Assembly Manifest -> is part of the assembly that describers set of files inside the assembly
+MSIL Code - Code the compiler produced as it compiled the source code.
+Type MetaData -> Metadata Every managed module contains metadata tables. There are two main types of tables: tables that describe the types and members defined in your source code and tables that describe the types and members referenced by your source code.
+
+What is the difference between an EXE and a DLL?
+EXE file is like a standalone app that you can run directly on your computer. 
+DLL file is more like a helper that other apps call on to use its tools or features, but you can't run it by itself.
+
+What’s the difference between IEnumerable<T> and List<T>?
+with a List<T> you can add and remove items,
+while with an IEnumerable<T> you can only iterate over the items.
+
+Why class is called abstract data type?
+A class containing varoius objects implies a set of data members along with their operations to be performed. 
+The handling of instance variables is done through member methods of a class. 
+This is the reason why a class is known as an abstract data type.
+
+What is a verbatim string literal and why do we use it?
+@"hello"	Basically the @ symbol tells the string constructor to ignore escape characters and line breaks.
+Example - filepath > @"\\MyServer\TestFolder\NewFolder";
+
+What are Properties in C#? Explain with an example?
+Properties enable a class to expose a public way of getting and setting values, while hiding implementation or verification code. 
+A get property accessor is used to return the property value, and a set property accessor is used to assign a new value.
+Advantages of Using Properties
+Properties also validate the data before storing it in the data fields. Fields can be made read-only or write-only using the properties. Properties make the program flexible. Flexibility means the programmer can change one part of the code without affecting other parts.
+
+Can you use virtual, override, or abstract keywords on an accessor of a static property? 
+It is an error to use a virtual, abstract, or override modifier on an accessor of a static property.
+
+What are Access Modifiers in C#?
+#1
+Public, Private, Protected, Internal
+protected internal, private protected
+file - for that file (C# 11)
+#2
+Class, struct - > internal(default)
+[class] Methods, Fields -> private(default)
+[struct] Methods, Fields -> public(default)
+delegate -> internal (namespace), private (class/struct)
+Interface, Enum -> public(default)
+#3
+class -> (Public, internal, protected internal, private)
+struct -> (public, internal, private) (Protected - no supported)
+enum -> public, internal, private
+fileds (in class/struct) -> public, private, protected, internal, protected internal
+
+Can derived classes have greater accessibility than their base types?
+Derived classes can't have greater accessibility than their base types.
+
+What do you mean by “Explicitly Implementing an Interface”? Give an example?
+class SampleClass : IControl, ISurface
+{
+	void IControl.Paint()
+	{
+		//code here
+	}
+	void ISurface.Paint()
+	{
+		//code here
+	}
+}
+
+What is the execution control flow of overloaded methods?
+Method Call -> Argument Matching -> Best Match Selection -> Method Execution -> Return Value
