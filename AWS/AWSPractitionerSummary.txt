@@ -7,7 +7,7 @@ AWS OpsWorks (configuration management) -
 ***************************************************************************************************
 Some Specials
 ---------------------------------------------------------------------------------------------------
-CDK, Elastic Beanstak, SAM - Behind the scene uses Clodformation
+CDK, Elastic Beanstalk, SAM - Behind the scene uses Clodformation
 AWS CloudFormation Stack Sets allows you to provision resources across multiple AWS accounts and regions with a single operation
 -------
 • Cloud Migration Approaches - 
@@ -31,6 +31,7 @@ IAM Section – Summary
 	AWS managed policies/Customer managed policies/Inline policies
 • Roles: for EC2 instances or AWS services, Expires after set period of time.
 • Security: MFA + Password Policy
+• AWS Management Console: (protected by password + MFA)
 • AWS CLI: manage your AWS services using the command-line
 • AWS SDK: manage your AWS services using a programming language
 • Access Keys: access AWS using the CLI or SDK
@@ -55,11 +56,10 @@ Other Compute
 • What’s serverless?
 	• Serverless is a new paradigm in which the developers don’t have to manage servers anymore… 
 	• Serverless does not mean there are no servers…, it means you just don’t manage / provision / see them
-
 • Batch: run batch jobs on AWS across managed EC2 instances
-	Fully managed batch processing at any scale
-	Batch will dynamically launch EC2 instances or Spot Instances
-	Batch jobs are defined as Docker images and run on ECS
+	• Fully managed batch processing at any scale
+	• Batch will dynamically launch EC2 instances or Spot Instances
+	• Batch jobs are defined as Docker images and run on ECS
 • Batch vs Lambda 
 	• Lambda: 
 		• Time limit 
@@ -113,17 +113,16 @@ Deploying and Managing Infrastructure at Scale Section
 	• Health Monitoring
 		• Health agent pushes metrics to CloudWatch
 		• Checks for app health, publishes health events
-• CodeDeploy (hybrid): deploy & upgrade any application onto servers
+• CodeDeploy (hybrid): deploy & upgrade any application onto servers (Deploy code onto servers)
 • CodeCommit: Store code in private git repository (version controlled)
 • CodeBuild: Build & test code in AWS
-• CodeDeploy: Deploy code onto servers
 • CodePipeline: Orchestration of pipeline (from code to build to deploy)
 • CodeArtifact: Store software packages / dependencies on AWS
 • Systems Manager (SSM - Services Systems Manager) (hybrid): patch, configure and run commands at scale
 	• We need to install the SSM agent onto the systems we control
 	• Installed by default on Amazon Linux AMI & some Ubuntu AMI
 	• Thanks to the SSM agent, we can run commands, patch & configure our servers
-	• SSM Session Manager (SSM Agent)
+	• SSM Session Manager (& SSM Agent)
 		• Allows you to start a secure shell on your EC2 and on-premises servers
 		• No SSH access, bastion hosts, or SSH keys needed
 		• No port 22 needed (better security)
@@ -149,44 +148,27 @@ Global Infrastructure Section
 		• MX (mail exchange) => mail server
 	• example.com => AWS resource == Alias (ex: ELB, CloudFront, S3, RDS, etc…)
 	• Route 53 Routing Policies
-		Simple 
-			Maps a domain name to (one or more) IP Addresses
-		Weighted 
-			Maps a single DNS name to multiple weighted resources 
-			10% to A, 30% to B, 60% to C (useful for canary deployments)
-		Latency 
-			Choose the option with minimum latency
-			Latency between hosts on the internet can change over time
-		Failover 
-			Active-passive failover.
-			Primary Health check fails (optional cloud Watch alarm) => DR site is used
-		Geoproximity 
-			Choose the nearest resource (geographic distance) to your user. Configure a bias.
-		Multivalue answer 
-			Return multiple healthy records (upto 8) at random
-			You can configure an (optional) health check against every record
-		Geolocation 
-			Choose based on the location of the user
-• Global Content Delivery Network (CDN): CloudFront
+		• Simple: Maps a domain name to (one or more) IP Addresses
+		• Weighted: Maps a single DNS name to multiple weighted resources, 10% to A, 30% to B, 60% to C (useful for canary deployments)
+		• Latency: Choose the option with minimum latency. Latency between hosts on the internet can change over time.
+		• Failover: Active-passive failover.Primary Health check fails (optional cloud Watch alarm) => DR site is used.
+		• Geoproximity: Choose the nearest resource (geographic distance) to your user. Configure a bias.
+		• Multivalue answer: Return multiple healthy records (upto 8) at random, You can configure an (optional) health check against every record
+		• Geolocation: Choose based on the location of the user
+• Global Content Delivery Network (CDN): [CloudFront]
 	• Replicate part of your application to AWS Edge Locations – decrease latency
 	• Cache common requests – improved user experience and decreased latency
 	• CloudFront vs S3 Cross Region Replication
 		CloudFront: Great for static content that must be available everywhere
 		S3 Cross Region Replication: Great for dynamic content that needs to be available at low-latency in few regions
-• S3 Transfer Acceleration
-	• Accelerate global uploads & downloads into Amazon S3
+• S3 Transfer Acceleration: Accelerate global uploads & downloads into Amazon S3
 • AWS Global Accelerator
 	• Improve global application availability and performance using the AWS global network
 	• 2 Anycast IP are created for your application and traffic is sent through Edge Locations
 	• AWS Global Accelerator (No caching) vs CloudFront (cacheable content)
-• AWS Outposts
-	• Deploy Outposts Racks in your own Data Centers to extend AWS services
-• AWS WaveLength
-	• Brings AWS services to the edge of the 5G networks (like mobile or anything connected to 5G)
-	• Ultra-low latency applications
-• AWS Local Zones
-	• Bring AWS resources (compute, database, storage, …) closer to your users
-	• Good for latency-sensitive applications
+• AWS Outposts: Deploy Outposts Racks in your own Data Centers to extend AWS services
+• AWS WaveLength: Brings AWS services to the edge of the 5G networks (like mobile or anything connected to 5G), Ultra-low latency applications.
+• AWS Local Zones: Bring AWS resources (compute, database, storage, …) closer to your users. Good for latency-sensitive applications.
 • Global Applications Architecture
 	• Single Region, Single AZ
 	• Single Region, Multi AZ
@@ -207,36 +189,48 @@ Cloud Integration
 	• Multiple Subscribers, send all messages to all of them
 	• No message retention
 • Kinesis: (Alternative for Kafka) [Shards]
-	• real-time big data streaming, persistence and analysis
+	• Real-time big data streaming, persistence and analysis
 	• Managed service to collect, process, and analyze real-time streaming data at any scale
 	• Amazon Kinesis Data Streams: low latency streaming to ingest data at scale from hundreds of thousands of sources
 	• Amazon Data Firehose: load Kinesis Data Streams into Amazon S3, Redshift, OpenSearch, etc…
 	• Amazon Kinesis Analytics: Run queries against streaming data to analyize the streams
 	• Amazon Kinesis Video Streams: Monitor video streams (Example - can detecect Bad words integrating with AI)
 • Amazon MQ: managed message broker for ActiveMQ and RabbitMQ in the cloud (MQTT, AMQP.. protocols)
+	• When migrating to the cloud, instead of re-engineering the application to use SQS and SNS, we can use Amazon MQ 
+	• Amazon MQ is a managed message broker service for ActiveMQ and RabbitMQ.
 ***************************************************************************************************
 Cloud Monitoring 
 ---------------------------------------------------------------------------------------------------
 • CloudWatch: Monitoring and observability service
-	• Metrics: monitor the performance of AWS services and billing metrics
-	• Alarms: automate notification, perform EC2 action, notify to SNS based on metric
+	• Metrics: Monitor the performance of AWS services and billing metrics
+	• Alarms: Automate notification, perform EC2 action, notify to SNS based on metric
 	• Logs: collect log files from EC2 instances, servers, Lambda functions, ECS, Route53…
 		Logs Agent: Installed on ec2 instances to move logs from servers to CloudWatch logs
 		Logs Insights: Write queries and get actionable insights from your logs
 		Container Insights: Monitor, troubleshoot, and set alarms for your containerized applications running in EKS, ECS and Fargate
 	• Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule
 	• Dashboards: Create auto refreshed graphs around all CloudWatch metrics
-• CloudTrail: audit API calls made within your AWS account
-	Get an history of events / API calls made within your AWS Account by:Console, SDK, CLI, AWS Services
-• CloudTrail Insights: automated analysis of your CloudTrail Events
-• X-Ray: trace requests made through your distributed applications
+• CloudTrail: If a resource is deleted in AWS, investigate CloudTrail first!
+	• Audit API calls made within your AWS account
+	• Get an history of events/API calls made within your AWS Account by:Console, SDK, CLI, AWS Services.
+	• Can put logs from CloudTrail into CloudWatch Logs or S3
+	• A trail can be applied to All Regions (default) or a single Region.
+	• Provides governance, compliance and audit for your AWS Account
+	• CloudTrail Insights: 
+		automated analysis of your CloudTrail Events
+• X-Ray: Debugging in Production for microservices
+	• AWS X -Ray Visual analysis of our applications connection or flow.
+	• Trace requests made through your distributed applications
 	• Understand dependencies in a microservice architecture
 	• Troubleshooting performance (bottlenecks)
 	• Find errors and exceptions
 	• Identify users that are impacted
-• AWS Health Dashboard: status of all AWS services across all regions
+• AWS Health Dashboard: Status of all AWS services across all regions
+	• Shows all regions, all services health
+	• Shows historical information for each day
 • AWS Account Health Dashboard: AWS events that impact your infrastructure
-	• alerts and remediation guidance when AWS is experiencing events that may impact you.
+	• Alerts and remediation guidance when AWS is experiencing events that may impact you.
+	• Can aggregate data from an entire AWS Organization
 • Amazon CodeGuru: ML-powered service for automated code reviews and application performance recommendations
 	• CodeGuru Reviewer: automated code reviews for static code analysis (code at git) (development)
 	• CodeGuru Profiler: visibility/recommendations about application performance during runtime (deployed code) (production)
@@ -244,12 +238,20 @@ Cloud Monitoring
 ***************************************************************************************************
 VPC Section – Summary
 ---------------------------------------------------------------------------------------------------
-• VPC – Virtual Private Cloud (Regional Based), (Private network in AWS, with control of all trafic)
+• VPC – Virtual Private Cloud (Regional Based)
+	• Private network in AWS, with control of all trafic, private network to deploy your resources
 • Subnets – Tied to an AZ, network partition of the VPC (Public/Private subnets)
-	• In AWS Route-Tables are used for routing these are associatd with VPC's/Subnets
-• Internet Gateway – at the VPC level, provide Internet Access
-• NAT Gateway(AWS managed)/Instances(Self-managed) – give internet access to private subnets for download software updates/patches
-• NACL – Stateless firewall, subnet rules for inbound and outbound, rules have priority no's (100 - less, 10 - more) (IPs)
+	• Subnets allow you to partition your network inside your VPC
+	• In AWS Route-Tables are used for routing these are associatd with VPC's/Subnets (To define access to the internet and between subnets, we use Route Tables)
+• Internet Gateway – 
+	• For Public Subnets
+	• At the VPC level, 
+	• provide Internet Access
+	• Internet Gateways helps our VPC instances connect with the internet
+• NAT Gateway(AWS managed)/Instances(Self-managed) [Network Address Translation]
+	• For Private Subnets
+	• give internet access to private subnets for download software updates/patches
+• NACL (Network Access Control List) – Stateless firewall, subnet rules for inbound and outbound, rules have priority no's (100 - less, 10 - more) (IPs) 
 • Security Groups – Stateful, operate at the EC2 instance level or ENI (IPs + other Security Groups)
 • VPC Peering – Connect two VPC with non overlapping IP ranges, nontransitive
 • Elastic IP –fixed public IPv4, ongoing cost if not in-use
@@ -292,7 +294,7 @@ Security & Compliance - Summary
 	• Prohibited - DNS, DoS/DDoS, flooding
 • KMS: Encryption keys managed by AWS
 	• Types - Customer Managed Key/AWS Managed Key/AWS Owned Key/CloudHSM Keys
-• CloudHSM: Hardware encryption, we manage encryption keys
+• CloudHSM: Hardware encryption, we/user manage encryption keys.
 • AWS Certificate Manager: Provision, Manage and Deploy SSL/TLS Certificates
 • AWS Systems Manager Parameter Store: Manage application environment configuration and secrets
 • AWS Secrets Manager: 
@@ -305,7 +307,7 @@ Security & Compliance - Summary
 • GuardDuty: Find malicious behavior with VPC, DNS & CloudTrail Logs
 	• Continuously monitor your AWS environment for suspicious activity (Intelligent Threat Detection).
 	• Analyze AWS CloudTrail events, VPC Flow Logs, DNS Logs etc.
-• Inspector: scan & find software vulnerabilities in (only for) EC2, ECR Images, and Lambda functions.
+• Inspector: Scan & find software vulnerabilities in (only for) EC2, ECR Images, and Lambda functions.
 • Config: Track config Resource history and change tracking and compliance against Config rules
 	• Helps with auditing and recording compliance of your AWS resources
 	• Helps record configurations and changes over time
