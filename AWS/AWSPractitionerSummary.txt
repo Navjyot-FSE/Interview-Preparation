@@ -23,32 +23,38 @@ AWS CloudFormation Stack Sets allows you to provision resources across multiple 
 • AWS Application Migration Service (MGN): Lift and shift applications to AWS. Earlier version: AWS Server Migration Service (AWS SMS)
 • AWS Mainframe Modernization: Migrate Mainframe Applications to AWS
 ***************************************************************************************************
-IAM Section – Summary
+AWS IAM - Identity & Access Management
 ---------------------------------------------------------------------------------------------------
 • Users: mapped to a physical user, has a password for AWS Console
 • Groups: contains users only
 • Policies: JSON document that outlines permissions for users or groups
 	AWS managed policies/Customer managed policies/Inline policies
-• Roles: for EC2 instances or AWS services, Expires after set period of time.
-• Security: MFA + Password Policy
-• AWS Management Console: (protected by password + MFA)
-• AWS CLI: manage your AWS services using the command-line
-• AWS SDK: manage your AWS services using a programming language
-• Access Keys: access AWS using the CLI or SDK
+• IAM – Password Policy: Strong passwords policies
+• Security: MFA (Authy/Google Authenticator/Yubikey) + Password Policy 
+• Three ways to use AWS
+	• AWS Management Console: Protected by password + MFA (Web)
+	• AWS CLI: Manage your AWS services using the command-line
+	• AWS SDK: Manage your AWS services using a programming language
+• Access Keys: Access AWS using the CLI or SDK
 • Audit: IAM Credential Reports & IAM Access Advisor
+• Roles: for EC2 instances or AWS services, Expires after set period of time.
 ***************************************************************************************************
 Other Compute
 ---------------------------------------------------------------------------------------------------
-• Docker: container technology to run applications
-	Docker Repositories
+• Docker: 
+	• Container technology to run applications
+	• Docker Repositories
 		• Public: Docker Hub
 		• Private: Amazon ECR
-• ECS: run Docker containers on EC2 instances
-	You must provision & maintain the infrastructure (the EC2 instances)
+• ECS: 
+	• Run Docker containers on EC2 instances
+	• You must provision & maintain the infrastructure (the EC2 instances)
+	• Has integrations with the Application Load Balancer
 • Fargate:
 	• You do not provision the infrastructure (no EC2 instances to manage) – simpler!
-	• Serverless offering
-• ECR: Private Docker Images Repository
+	• Serverless offering, AWS just runs containers for you based on the CPU/RAM you need
+• ECR: 
+	• Private Docker Images Repository
 	• This is where you store your Docker images so they can be run by ECS or Fargate
 • EKS
 	• Allows you to launch managed Kubernetes clusters on AWS
@@ -69,7 +75,7 @@ Other Compute
 	• Batch: 
 		• No time limit 
 		• Any runtime as long as it’s packaged as a Docker image 
-		• Rely on EBS / instance store for disk space 
+		• Rely on EBS/Instance store for disk space 
 		• Relies on EC2 (can be managed by AWS)
 • Lightsail: predictable & low pricing for simple application & DB stacks
 	• Great for people with little cloud experience!
@@ -93,32 +99,32 @@ Other Compute
 	• Supports RESTful APIs and WebSocket APIs
 	• Support for security, user authentication, API throttling, API keys, monitoring.
 ***************************************************************************************************
-Deploying and Managing Infrastructure at Scale Section
+Deploying and Managing Infrastructure at Scale
 ---------------------------------------------------------------------------------------------------
-• CloudFormation: (AWS only)
+• CloudFormation: (AWS only) [or Teraform]
 	• Infrastructure as Code, works with almost all of AWS resources
 	• Repeat across Regions & Accounts
 	• CloudFormation + Infrastructure Composer
 		• We can see all the resources
 		• We can see the relations between the components
-• Beanstalk: (AWS only)
+• Beanstalk: (AWS only)It is Managed service, a developer centric view of deploying an application on AWS
 	• Platform as a Service (PaaS), limited to certain programming languages or Docker
 	• Deploy code consistently with a known architecture: ex, ALB + EC2 + RDS
 	• Just the application code is the responsibility of the developer
 	• Three architecture models: 
 		• Single Instance deployment: good for dev 
-		• LB + ASG: great for production or pre-production web applications 
-		• ASG only: great for non-web apps in production (workers, etc..)
+		• LB + ASG: Great for production or pre-production web applications 
+		• ASG only: Great for non-web apps in production (workers, etc..)
 	• Support for many platforms: Go, Java SE, Java with Tomcat, .Net on IIS, Node.js, PHP, Python, Ruby, Single/Multi Container Docker, Pre-configured Docker
 	• Health Monitoring
 		• Health agent pushes metrics to CloudWatch
 		• Checks for app health, publishes health events
-• CodeDeploy (hybrid): deploy & upgrade any application onto servers (Deploy code onto servers)
+• CodeDeploy (hybrid): Deploy & upgrade any application onto servers (Deploy code onto servers)
 • CodeCommit: Store code in private git repository (version controlled)
 • CodeBuild: Build & test code in AWS
 • CodePipeline: Orchestration of pipeline (from code to build to deploy)
 • CodeArtifact: Store software packages / dependencies on AWS
-• Systems Manager (SSM - Services Systems Manager) (hybrid): patch, configure and run commands at scale
+• Systems Manager (SSM - Services Systems Manager) (hybrid): Patch, Configure and Run commands at scale
 	• We need to install the SSM agent onto the systems we control
 	• Installed by default on Amazon Linux AMI & some Ubuntu AMI
 	• Thanks to the SSM agent, we can run commands, patch & configure our servers
@@ -129,10 +135,12 @@ Deploying and Managing Infrastructure at Scale Section
 • AWS CDK: Define your cloud infrastructure using a programming language
 	• The code is “compiled” into a CloudFormation template (JSON/YAML)
 	• You can therefore deploy infrastructure and application runtime code together
-	• Great for Lambda functions
-	• Great for Docker containers in ECS / EKS
+	• Great for Lambda functions, Docker containers in ECS/EKS
+	• SDK vs CDK
+		• AWS SDK - Interact with AWS services after the infrastructure is set up (like uploading a file to S3, interacting with DynamoDB, etc.).
+		• AWS CDK - Define and provision infrastructure (like creating an S3 bucket or an EC2 instance) in a programmatic way. The CDK is used for infrastructure management.
 ***************************************************************************************************
-Global Infrastructure Section
+Global Infrastructure
 ---------------------------------------------------------------------------------------------------
 • Global Application: Decresed latency, Disaster Recovery, Attach protection (Regions/Edge Locations(PoP)/Availability Zones)
 • Global DNS: Route 53 (is Managed DNS)
@@ -168,7 +176,7 @@ Global Infrastructure Section
 	• AWS Global Accelerator (No caching) vs CloudFront (cacheable content)
 • AWS Outposts: Deploy Outposts Racks in your own Data Centers to extend AWS services
 • AWS WaveLength: Brings AWS services to the edge of the 5G networks (like mobile or anything connected to 5G), Ultra-low latency applications.
-• AWS Local Zones: Bring AWS resources (compute, database, storage, …) closer to your users. Good for latency-sensitive applications.
+• AWS Local Zones: Bring AWS resources (compute, database, storage,…) closer to your users. Good for latency-sensitive applications.
 • Global Applications Architecture
 	• Single Region, Single AZ
 	• Single Region, Multi AZ
@@ -177,10 +185,13 @@ Global Infrastructure Section
 ***************************************************************************************************
 Cloud Integration 
 ---------------------------------------------------------------------------------------------------
+• There are two patterns of application communication
+	• Synchronous communications
+	• Asynchronous/Event based (decouple your applications)
 • SQS: (Queue model)
 	• Queue service in AWS
-	• Multiple Producers, messages are kept up to 14 days
-	• Multiple Consumers share the read and delete messages when done
+	• Multiple Producers produce msgs(messages are kept up to 14 days).
+	• Multiple Consumers share the read and delete messages when done.
 	• Used to decouple applications in AWS
 	• Standard Queue/FIFO (first-in-first-out) Queue
 • SNS: (Pub-Sub Model) [Topics]
@@ -208,7 +219,7 @@ Cloud Monitoring
 		Logs Agent: Installed on ec2 instances to move logs from servers to CloudWatch logs
 		Logs Insights: Write queries and get actionable insights from your logs
 		Container Insights: Monitor, troubleshoot, and set alarms for your containerized applications running in EKS, ECS and Fargate
-	• Events (or EventBridge): react to events in AWS, or trigger a rule on a schedule
+	• Events (or EventBridge): React to events in AWS, or trigger a rule on a schedule
 	• Dashboards: Create auto refreshed graphs around all CloudWatch metrics
 • CloudTrail: If a resource is deleted in AWS, investigate CloudTrail first!
 	• Audit API calls made within your AWS account
@@ -234,44 +245,50 @@ Cloud Monitoring
 • Amazon CodeGuru: ML-powered service for automated code reviews and application performance recommendations
 	• CodeGuru Reviewer: automated code reviews for static code analysis (code at git) (development)
 	• CodeGuru Profiler: visibility/recommendations about application performance during runtime (deployed code) (production)
-
 ***************************************************************************************************
-VPC Section – Summary
+AWS VPC - Virtual Private Cloud
 ---------------------------------------------------------------------------------------------------
-• VPC – Virtual Private Cloud (Regional Based)
+• VPC: Virtual Private Cloud (Regional Based)
 	• Private network in AWS, with control of all trafic, private network to deploy your resources
-• Subnets – Tied to an AZ, network partition of the VPC (Public/Private subnets)
+• Subnets: Tied to an AZ, network partition of the VPC (Public/Private subnets)
 	• Subnets allow you to partition your network inside your VPC
-	• In AWS Route-Tables are used for routing these are associatd with VPC's/Subnets (To define access to the internet and between subnets, we use Route Tables)
-• Internet Gateway – 
+	• In AWS Route-Tables are used for routing these are associatd with VPC's/Subnets 
+		• To define access to the internet and between subnets, we use Route Tables
+• Internet Gateway: Internet Gateways helps our VPC instances connect with the internet
 	• For Public Subnets
-	• At the VPC level, 
+	• At the VPC level 
 	• provide Internet Access
-	• Internet Gateways helps our VPC instances connect with the internet
 • NAT Gateway(AWS managed)/Instances(Self-managed) [Network Address Translation]
 	• For Private Subnets
 	• give internet access to private subnets for download software updates/patches
-• NACL (Network Access Control List) – Stateless firewall, subnet rules for inbound and outbound, rules have priority no's (100 - less, 10 - more) (IPs) 
-• Security Groups – Stateful, operate at the EC2 instance level or ENI (IPs + other Security Groups)
-• VPC Peering – Connect two VPC with non overlapping IP ranges, nontransitive
-• Elastic IP –fixed public IPv4, ongoing cost if not in-use
-• VPC Endpoints – Provide private access to AWS Services within VPC
+• NACL (Network Access Control List): Stateless firewall at VPC, subnet rules for inbound and outbound, rules have priority no's (100 - less, 10 - more) (IPs) 
+• Security Groups: Stateful, operate at the EC2 instance level or ENI (IPs + other Security Groups)
+• VPC Peering: Connect two VPC with non overlapping IP ranges, nontransitive
+• Elastic IP: Fixed public IPv4, ongoing cost if not in-use
+• VPC Endpoints: Provide private access to AWS Services within VPC
 	• VPC Endpoint Gateway - S3 & DynamoDB
 	• VPC Endpoint Interface - the rest (CloudWatch)
-• PrivateLink – Privately connect to a service in a 3rd party VPC
-• VPC Flow Logs – network traffic logs 
+• PrivateLink: Privately connect to a service in a 3rd party VPC
+• VPC Flow Logs: Network traffic logs 
 	• VPC, Subnets, ENI(Elastic Network Interface)
 	• ACCEPT or REJECT Logs
-• Site to Site VPN – VPN over public internet between on-premises DC and AWS
-• Client VPN – OpenVPN connection from your computer into your VPC
-• Direct Connect – direct private connection to AWS
-• AWS VPN - Encrypted (IPsec) tunnel over internet to onpremises
-• Transit Gateway – Connect thousands of VPC and on-premises networks together
-• AWS Local Zones - AWS infrastructure to metro areas, Ideal for real-time user engagement like online gaming.
-• AWS Outposts - native AWS services, infrastructure, and operating models to on-premises. Suitable for workloads with regulatory or data residency needs.
-• AWS Wavelength - AWS infrastructure in mobile service providers data centers at the 5G network edge. Enables ultra-low latency & high-bandwidth applications for mobile & connected devices.
+• Site to Site VPN: (Public Internet) VPN over public internet between on-premises DC and AWS
+	• On-premises: Must use a Customer Gateway (CGW)
+	• AWS: Must use a Virtual Private Gateway (VGW)
+• Client VPN: (Public Internet)OpenVPN connection from your computer into your VPC
+	• Connect from your computer using OpenVPN to your private network in AWS and on-premises
+	• Allow you to connect to your EC2 instances over a private IP
+• Direct Connect: (Wired) Direct private connection to AWS
+• AWS VPN: Encrypted (IPsec) tunnel over internet to onpremises
+• Transit Gateway: Connect thousands of VPC and on-premises networks together
+• AWS Local Zones: AWS infrastructure to metro areas, Ideal for real-time user engagement like online gaming.
+• AWS Outposts: native AWS services, infrastructure, and operating models to on-premises. Suitable for workloads with regulatory or data residency needs.
+• AWS Wavelength: AWS infrastructure in mobile service providers data centers at the 5G network edge. Enables ultra-low latency & high-bandwidth applications for mobile & connected devices.
+
+Some Specials
+• Elastic Network Interface (ENI) is a virtual network interface in Amazon Web Services (AWS) that allows an EC2 instance to connect to a VPC (Virtual Private Cloud).
 ***************************************************************************************************
-Security & Compliance - Summary
+Security & Compliance
 ---------------------------------------------------------------------------------------------------
 • Shared Responsibility on AWS
 	• AWS responsibility - Security of the Cloud
@@ -336,32 +353,167 @@ Security & Compliance - Summary
 	Integrates with Microso AD
 	Supports Security Assertion Markup Language (SAML) 2.0
 ***************************************************************************************************
-Account Management, Billing & Support Section
+Machine Learning
 ---------------------------------------------------------------------------------------------------
-• Account Best Practices – Summary
-	• Operate multiple accounts using Organizations
-	• Use SCP (service control policies) to restrict account power
-	• Easily setup multiple accounts with best-practices with AWS Control Tower
-	• Use Tags & Cost Allocation Tags for easy management & billing
-	• IAM guidelines: MFA, least-privilege, password policy, password rotation
-	• Config to record all resources configurations & compliance over time
-	• CloudFormation to deploy stacks across accounts and regions
-	• Trusted Advisor to get insights, Support Plan adapted to your needs
-	• Send Service Logs and Access Logs to S3 or CloudWatch Logs
-	• CloudTrail to record API calls made within your account
-	• If your Account is compromised: change the root password, delete and rotate all passwords / keys, contact the AWS support
-	• Allow users to create pre-defined stacks defined by admins using AWS Service Catalog
-• Billing and Costing Tools – Summary
-	• Compute Optimizer: recommends resources’ configurations to reduce cost
-	• Pricing Calculator: cost of services on AWS
-	• Billing Dashboard: high level overview + free tier dashboard
-	• Cost Allocation Tags: tag resources to create detailed reports
-	• Cost and Usage Reports: most comprehensive billing dataset
-	• Cost Explorer: View current usage (detailed) and forecast usage
-	• Billing Alarms: in us-east-1 – track overall and per-service billing
-	• Budgets: more advanced – track usage, costs, RI, and get alerts
-	• Savings Plans: easy way to save based on long-term usage of AWS
-	• Cost Anomaly Detection: detect unusual spends using Machine Learning
-	• Service Quotas: notify you when you’re close to service quota threshold
+• Rekognition : Face detection, labeling, celebrity recognition
+• Transcribe: Audio to Text (ex: subtitles) 
+• Polly: Text to Audio 
+• Translate: Translations (Translate localize content for international users)
+• Lex: Build conversational bots – chatbots/call center bots
+	• Same technology that powers Alexa
+• Connect: Cloud contact center 
+	• Receive calls, create contact flows, cloud-based virtual contact center
+•  : Natural Language Processing(NLP)
+	• Analyze customer interactions (emails) to find what leads to a positive or negative experience
+• SageMaker: Machine Learning for every developer and data scientist 
+• Forecast: Build highly accurate forecasts (Ex: predict the future sales of a raincoat)
+• Kendra: ML-powered search engine 
+	• Extract answers from within a document (text, pdf, HTML, PowerPoint, MS Word, FAQs…)
+	• S3/RDS/Google Drive/MS OneDrive/Server Now etc
+• Personalize: Real-Time personalized recommendations (Example: personalized product recommendations)
+• Textract: Automatically extracts text, handwriting, and data from any scanned documents using AI and ML (e.g. - old hand writen invoices to tables)
 ***************************************************************************************************
+Account Management, Billing & Support
+---------------------------------------------------------------------------------------------------
+• AWS Organizations : Centralize your management (billing, access control, compliance, security and logging) across multiple AWS accounts.
+	• Global Service, Allows to manage multiple AWS accounts, Main account is the master account.
+	• Access control/Compliance/Security
+		• Restrict account privileges using Service Control Policies (SCP)
+		• Centralized compliance management for AWS Config Rules
+		• AWS Firewall Manager to manage firewall rules (across accounts)
+	• Logging
+		• Send AWS CloudTrail data to one S3 bucket (across accounts)
+		• Send CloudWatch Logs to central logging account
+	• Cost Benefits:
+		• Consolidated Billing across all accounts
+			share the volume pricing, Reserved Instances and Savings Plans discounts
+		• Pricing benefits from aggregated usage
+		• Pooling of Reserved EC2 instances for optimal savings
+		• Use tagging standards for billing purposes
+	• Multi Account Strategies
+		• Create accounts 
+			per department, 
+			per cost center, 
+			per dev/test/prod, based on regulatory restrictions (using SCP), 
+		• for better resource isolation (ex: VPC), to have separate per-account
+	• Organizational Units (OU) - Examples
+		• Business Units
+		• Environmentl Units
+		• Project based
+	• Service Control Policies (SCP)
+		• Whitelist or blacklist IAM actions
+		• Applied at the OU or Account level
+		• Does not apply to the Master Account
+		• SCP is applied to all the Users and Roles of the Account, including Root user
+	• AWS Control Tower
+		• Easy way to set up and govern a secure and compliant multi-account AWS environment based on best practices
+		• AWS Control Tower runs on top of AWS Organizations: It automatically sets up AWS Organizations to organize accounts and implement SCPs
+	• AWS Resource Access Manager (AWS RAM)
+		• Share AWS resources that you own with other AWS accounts
+		• Share with any account or within your Organization
+		• Avoid resource duplication!
+	• AWS Service Catalog
+		• Users that are new to AWS have too many options, and may create stacks that are not compliant / in line with the rest of the organization
+		• Some users just want a quick self-service portal to launch a set of authorized products pre-defined by admins service limits
+	• Account Best Practices – Summary
+		• Operate multiple accounts using Organizations
+		• Use SCP (service control policies) to restrict account power
+		• Easily setup multiple accounts with best-practices with AWS Control Tower
+		• Use Tags & Cost Allocation Tags for easy management & billing
+		• IAM guidelines: MFA, least-privilege, password policy, password rotation
+		• Config to record all resources configurations & compliance over time
+		• CloudFormation to deploy stacks across accounts and regions
+		• Trusted Advisor to get insights, Support Plan adapted to your needs
+		• Send Service Logs and Access Logs to S3 or CloudWatch Logs
+		• CloudTrail to record API calls made within your account
+		• If your Account is compromised: change the root password, delete and rotate all passwords / keys, contact the AWS support
+		• Allow users to create pre-defined stacks defined by admins using AWS Service Catalog
+• Billing and Costing Tools
+	• 4 pricing models:
+		• Pay as you go
+		• Save when you reserve
+		• Pay less by using more
+		• Pay less as AWS grows
+	• Free services & free tier in AWS
+		• IAM
+		• VPC
+		• Consolidated Billing
+		• Elastic Beanstalk
+		• CloudFormation
+		• Auto Scaling Groups
+	• Compute Pricing 
+		• EC2
+		• Lambda & ECS
+		• S3
+		• EBS
+		• RDS
+		• Content Delivery (CloudFront)
+	• Networking Costs in AWS per GB
+		• Use Private IP instead of Public IP for good savings and better network performance
+		• Use same AZ for maximum savings
+	• AWS Compute Optimizer 
+		• Reduce costs and improve performance by recommending optimal AWS resources for your workloads
+		• Uses Machine Learning to analyze your resources configurations and their utilization CloudWatch metrics
+		• Recommendations can be exported to S3
+		• Lower your costs by up to 25%
+	• Billing and Costing Tools 
+		• Estimating costs in the cloud: 
+			• Pricing Calculator 
+		• Tracking costs in the cloud: 
+			• Billing Dashboard 
+			• Free Tier Dashboard
+			• Cost Allocation Tags 
+			• Cost and Usage Reports 
+			• Cost Explorer 
+		• Monitoring against costs plans: 
+			• Billing Alarms 
+			• Budgets
+	• AWS Cost Anomaly Detection
+		• Continuously monitor your cost and usage using ML to detect unusual spends
+	• AWS Service Quotas: 
+		• Notify you when you’re close to a service quota value threshold
+		• AWS account has Region-specific default quotas or limits for each service
+	• Trusted Advisor
+		• Analyze your AWS accounts and provides recommendation on 6 categories: 
+			• Cost optimization 
+			• Performance 
+			• Security 
+			• Fault tolerance 
+			• Service limits 
+			• Operational Excellence
+		• Business or Enterprise AWS support plan provides over 50 checks (Paid)
+	• Billing and Costing Tools – Summary
+		• Compute Optimizer: recommends resources’ configurations to reduce cost
+		• Pricing Calculator: cost of services on AWS
+		• Billing Dashboard: high level overview + free tier dashboard
+		• Cost Allocation Tags: tag resources to create detailed reports
+		• Cost and Usage Reports: most comprehensive billing dataset
+		• Cost Explorer: View current usage (detailed) and forecast usage
+		• Billing Alarms: in us-east-1 – track overall and per-service billing
+		• Budgets: more advanced – track usage, costs, RI, and get alerts
+		• Savings Plans: easy way to save based on long-term usage of AWS
+		• Cost Anomaly Detection: detect unusual spends using Machine Learning
+		• Service Quotas: notify you when you’re close to service quota threshold
+***************************************************************************************************
+Advanced Identity
+---------------------------------------------------------------------------------------------------
+• IAM
+	• Identity and Access Management inside your AWS account
+	• For users that you trust and belong to your company
+• Organizations: Manage multiple accounts
+• Security Token Service (STS): Temporary, limited-privileges credentials to access AWS resources
+• Cognito: Create a database of users for your mobile & web applications (Login with Facebook, Google, Twitter…)
+	- User Pools
+	- Identity pools
+• Directory Services: (Managed service)Provide AWS access to on-premise users without IAM users
+	• AWS Managed Microsoft AD (5000+ users) (trust connection)
+	• AD Connector (Use existing on Premise direcory)
+	• Simple AD (less than 5000 users) (proxy connection)
+• IAM Identity Center(successor to AWS SSO): one login for multiple AWS accounts & applications.
+***************************************************************************************************
+Other AWS Services
+---------------------------------------------------------------------------------------------------
+
+***************************************************************************************************
+AWS Architecting & Ecosystem
 ---------------------------------------------------------------------------------------------------
