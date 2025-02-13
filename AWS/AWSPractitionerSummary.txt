@@ -332,8 +332,8 @@ Global Infrastructure
 		• AAAA IPv6 ==> www.google.com => 2001:0db8:85a3:0000:0000:8a2e:0370:7334
 		• CNAME (hostname to hostname) ==> search.google.com => www.google.com
 		• NS (Name server) => google.com =>	ns-1453.awsdns-45.org
-											ns-234.awsdns-18.com
-											ns-6316.awsdns-54.co.uk
+							ns-234.awsdns-18.com
+							ns-6316.awsdns-54.co.uk
 		• MX (mail exchange) => mail server
 	• example.com => AWS resource == Alias (ex: ELB, CloudFront, S3, RDS, etc…)
 	• Route 53 Routing Policies
