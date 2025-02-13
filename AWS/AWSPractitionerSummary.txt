@@ -1,27 +1,3 @@
-AWS DataSync - 
-AWS Data Pipeline - 
-AWS Data Migration Service - 
-AWS Schema Conversion Tool - 
-Serverless Application Model (SAM) - 
-AWS OpsWorks (configuration management) - 
-***************************************************************************************************
-Some Specials
----------------------------------------------------------------------------------------------------
-CDK, Elastic Beanstalk, SAM - Behind the scene uses Clodformation
-AWS CloudFormation Stack Sets allows you to provision resources across multiple AWS accounts and regions with a single operation
--------
-• Cloud Migration Approaches - 
-	• Rehosting (litt-shift)
-	• Replatforming (Ex - Containerising)
-	• Repurchesing (Move to new)
-	• Refactoring (Serverless Computing)
-	• Retiring (End of service)
-	• Retaining (stay on-prem)
-• AWS Migration Hub: Single place to track application migrations across multiple AWS and partner solutions
-• AWS Application Discovery Service: Discover on-premises application inventory and dependencies
-• AWS Control Tower: Easiest way to set up and govern a secure multi-account AWS environment (creates your landing zone using AWS Organizations)
-• AWS Application Migration Service (MGN): Lift and shift applications to AWS. Earlier version: AWS Server Migration Service (AWS SMS)
-• AWS Mainframe Modernization: Migrate Mainframe Applications to AWS
 ***************************************************************************************************
 AWS IAM - Identity & Access Management
 ---------------------------------------------------------------------------------------------------
@@ -38,6 +14,211 @@ AWS IAM - Identity & Access Management
 • Access Keys: Access AWS using the CLI or SDK
 • Audit: IAM Credential Reports & IAM Access Advisor
 • Roles: for EC2 instances or AWS services, Expires after set period of time.
+***************************************************************************************************
+Amazon EC2
+---------------------------------------------------------------------------------------------------
+EC2 = Elastic Compute Cloud = Infrastructure as a Service
+Cloud Web Deplyoment = EC2 + EBS + ELB + ASG
+
+• EC2 Instance: AMI(OS) + Instance Size(CPU + RAM) + Storage(EBS/EFS/Instance store) + Security Groups + EC2 User Data(Bootstrap scripts)
+• EC2 User Data: Script launched at the first start of an instance
+• EC2 Instance Types:
+	• General Purpose: 
+		• General purpose instances provide a balance of compute, memory and networking resources, and can be used for a variety of diverse workloads. 
+		• These instances are ideal for applications that use these resources in equal proportions such as web servers and code repositories. 
+	• Compute Optimized
+		• Compute Optimized instances are ideal for compute bound applications that benefit from high performance processors. 
+		• Instances belonging to this category are well suited for batch processing workloads, media transcoding, high performance web servers, high performance computing (HPC), scientific modeling, dedicated gaming servers and ad server engines, machine learning inference and other compute intensive applications.
+	• Memory Optimized:
+		• Memory optimized instances are designed to deliver fast performance for workloads that process large data sets in memory.
+		• Memory-intensive workloads such as open source databases, in-memory caches, and real-time big data analytics.
+	• Accelerated Computing
+		• Accelerated computing instances use hardware accelerators, or co-processors, to perform functions, such as floating point number calculations, graphics processing, or data pattern matching, more efficiently than is possible in software running on CPUs.
+		• Generative AI applications, including question answering, code generation, video and image generation, speech recognition, and more.
+	• Storage Optimized
+		• Storage optimized instances are designed for workloads that require high, sequential read and write access to very large data sets on local storage. • They are optimized to deliver tens of thousands of low-latency, random I/O operations per second (IOPS) to applications.
+	• HPC Optimized
+		• High performance computing (HPC) instances are purpose built to offer the best price performance for running HPC workloads at scale on AWS. HPC instances are ideal for applications that benefit from high-performance processors such as large, complex simulations and deep learning workloads.
+	• Instance Features
+		• Amazon EC2 instances provide a number of additional features to help you deploy, manage, and scale your applications.
+	• Measuring Instance Performance
+• Security Groups: Firewall attached to the EC2 instance
+	• Controls how traffic is allowed into or out of our EC2 Instances.
+	• Security groups only contain allow rules
+	• Security groups rules can reference by IP or by security group
+	• Control of Inbound/Outbound network
+	• All inbound traffic is blocked by default
+	• All outbound traffic is authorised by default
+• Classic Ports to know
+	• 22 = SSH (Secure Shell) - log into a Linux instance
+	• 21 = FTP (File Transfer Protocol) – upload files into a file share
+	• 22 = SFTP (Secure File Transfer Protocol) – upload files using SSH
+	• 80 = HTTP – access unsecured websites
+	• 443 = HTTPS – access secured websites
+	• 3389 = RDP (Remote Desktop Protocol) – log into a Windows instance
+• Connect to EC2
+	• SSH: Start a terminal into our EC2 Instances (port 22)
+	• EC2 Instance Connect: 
+		• Connect to your EC2 instance within your browser
+		• No need to use key
+		• Need to make sure the port 22 is still opened!
+		• EC2 Instance Role: link to IAM roles
+• EC2 Instances Purchasing Options
+	• On-Demand Instances – short workload, predictable pricing, pay by second
+	• Reserved (1 & 3 years)
+		• Reserved Instances – long workloads
+		• Convertible Reserved Instances – long workloads with flexible instances
+	• Savings Plans (1 & 3 years) – commitment to an amount of usage, long workload
+	• Spot Instances – short workloads, cheap, can lose instances (less reliable)
+	• Dedicated Hosts – book an entire physical server, control instance placement
+	• Dedicated Instances – no other customers will share your hardware
+	• Capacity Reservations – reserve capacity in a specific AZ for any duration
+***************************************************************************************************
+EC2 Storage
+---------------------------------------------------------------------------------------------------
+• EBS volumes: 
+	• Network drives attached to one EC2 instance at a time 
+	• Mapped to an Availability Zones 
+	• Can use EBS Snapshots for backups / transferring EBS volumes across AZ 
+• EC2 Instance Store: 
+	• High performance hardware disk attached to our EC2 instance 
+	• Lost if our instance is stopped/terminated
+• EFS: Multi AZ, Network file system, can be attached to 100s of instances in a region 
+• EFS-IA: cost-optimized storage class for infrequent accessed files 
+• 3rd party high-performance file systems on AWS
+	• FSx for Windows: Network File System for Windows servers 
+	• FSx for Lustre: High Performance Computing Linux file system
+• AMI: (AMI = Amazon Machine Image)
+	• Create ready-to-use EC2 instances with our customizations 
+	• AMI are built for a specific region (and can be copied across regions)
+	• You can launch EC2 instances from:
+		• A Public AMI: AWS provided
+		• Your own AMI: you make and maintain them yourself
+		• An AWS Marketplace AMI: an AMI someone else made (and potentially sells)
+• EC2 Image Builder: Automatically build, test and distribute AMIs 
+***************************************************************************************************
+Elastic Load Balancing & Auto Scaling Groups Section
+---------------------------------------------------------------------------------------------------
+• High Availability vs Scalability (vertical and horizontal) vs Elasticity vs Agility in the Cloud
+• Elastic Load Balancers (ELB): Managed load balancer
+	• Distribute traffic across backend EC2 instances, can be Multi-AZ
+	• Supports health checks
+	• 4 kinds of load balancers offered by AWS:
+		• Application Load Balancer (HTTP / HTTPS only) – Layer 7
+		• Network Load Balancer (ultra-high performance, allows for TCP) – Layer 4
+		• Gateway Load Balancer – Layer 3
+		• Classic Load Balancer (retired in 2023) – Layer 4 & 7
+• Auto Scaling Groups (ASG)
+	• Implement Elasticity for your application, across multiple AZ
+	• Scale EC2 instances based on the demand on your system, replace unhealthy
+	• Integrated with the ELB
+***************************************************************************************************
+Amazon S3
+---------------------------------------------------------------------------------------------------
+• Buckets vs Objects: global unique name, tied to a region, there is no directory its key with /, key is full path of object
+• S3 security: IAM policy, S3 Bucket Policy (public access), S3 Encryption
+	• User-Based
+		• IAM Policies – which API calls should be allowed for a specific user from IAM
+	• Resource-Based
+		• Bucket Policies – bucket wide rules from the S3 console - allows cross account
+		• Object Access Control List (ACL) – finer grain (can be disabled)
+		• Bucket Access Control List (ACL) – less common (can be disabled)
+	• S3 bucket security use cases
+		• Public Access - Use Bucket Policy
+		• User Access to S3 – IAM permissions
+		• EC2 instance access - Use IAM Roles
+		• Cross-Account Access – Use Bucket Policy
+	• Bucket settings for Block Public Access: These settings were created to prevent company data leaks
+• S3 Websites: S3 can host static websites and have them accessible on the Internet
+• S3 Versioning: Multiple versions for files, prevent accidental deletes
+• S3 Replication: Same-region or cross-region, must enable versioning
+• S3 Storage Classes
+	• Amazon S3 Standard - General Purpose: Used for frequently accessed data, Low latency and high throughput
+	• Amazon S3 Infrequent Access (IA): Less frequently accessed, but requires rapid access.
+		• Amazon S3 Standard-Infrequent Access (IA)
+		• Amazon S3 One Zone-Infrequent Access
+	• Amazon S3 Glacier Storage Classes: Low-cost object storage meant for archiving/backups
+		• Amazon S3 Glacier Instant Retrieval
+		• Amazon S3 Glacier Flexible Retrieval
+		• Amazon S3 Glacier Deep Archive
+	• Amazon S3 Intelligent Tiering
+• S3 Durability and Availability
+	• High durability (99.999999999%, 11 9’s)
+	• 99.99% availability
+• S3 Encryption
+	Server-Side Encryption
+	Client-Side Encryption
+• IAM Access Analyzer for S3: Ensures that only intended people have access to your S3 buckets
+• Snow Family: import data onto S3 through a physical device, edge computing
+• Edge Computing: 
+	• Process data while it’s being created on an edge location(A truck on the road, a ship on the sea, a mining station underground)
+	• These locations may have limited internet and no access to computing power
+	• We setup a Snowball Edge device to do edge computing
+• AWS Storage Cloud Native Options
+	• Block: EBS, Instance Store
+	• File: EFS
+	• Object: S3, Glacier
+• OpsHub: Desktop application to manage Snow Family devices
+• AWS Storage Gateway: Hybrid solution to extend on-premises storage to S3
+	File, Volumes, Tapes <===AWS Storage Gateway===> EBS, S3, Glacier 
+***************************************************************************************************
+Databases
+---------------------------------------------------------------------------------------------------
+• Relational Databases - OLTP: 
+	• RDS (Relational Database Service) - Managed DB service for DB use SQL
+		• Create databases in the cloud that are managed by AWS, You cant SSH
+		• Postgres, MySQL, MariaDB, Oracle, Microsoft SQL Server, IBM DB2, Aurora
+	• Aurora
+		• Aurora is a proprietary technology from AWS (not open sourced)
+		• PostgreSQL and MySQL are both supported as Aurora DB 
+		• Aurora storage automatically grows in increments of 10GB, up to 128 TB
+• RDS Deployments: Read Replicas, Multi-AZ, Multi-Region
+	• Read Replicas: Scale the read workload of your DB
+	• Multi-AZ: Failover in case of AZ outage (high availability)
+	• Multi-Region (Read Replicas): Disaster recovery in case of region issue, Local performance for global reads
+• In-memory Database: ElastiCache -  Reduce load off databases for read intensive workloads (like Redis)
+• Key/Value Database: 
+	• DynamoDB (serverless)
+		• Fully Managed Highly available with replication across 3 AZ
+		• NoSQL database - not a relational database
+		• Single-digit millisecond latency – low latency retrieval
+		• DynamoDB is a key/value database
+	• DAX (cache for DynamoDB)
+		• Fully Managed in-memory cache for DynamoDB
+		• 10x performance improvement
+		• DAX is only used for and is integrated with DynamoDB, while ElastiCache can be used for other databases
+	• DynamoDB – Global Tables
+		• Make a DynamoDB table accessible with low latency in multiple-regions
+		• Active-Active replication (read/write to any AWS Region)
+• Warehouse - OLAP: Redshift (SQL)
+	• Redshift is based on PostgreSQL, but it’s not used for OLTP its OLAP(online analytical processing)
+	• Columnar storage of data (instead of row based)
+	• Massively Parallel Query Execution (MPP), highly available
+	• SQL interface for performing the queries
+	• Automatically provisions and scales data warehouse underlying capacity
+	• Use cases: Reporting, dashboarding applications, real-time analytics…
+• Hadoop Cluster: EMR(Elastic MapReduce)
+	• Helps creating Hadoop clusters (Big Data) to analyze and process vast amount of data
+	• Clusters can be made of hundreds of EC2 instances
+	• Use cases: data processing, machine learning, web indexing, big data…
+• Athena: Query data on Amazon S3 (serverless & SQL)
+	• Serverless query service to analyze data stored in Amazon S3
+	• Uses standard SQL language to query the files
+	• Use compressed or columnar data for cost-savings (less scan)
+	• Use cases: Business intelligence / analytics / reporting, analyze & query VPC Flow Logs, ELB Logs, CloudTrail trails, etc
+• QuickSight: Dashboards on your data (serverless)
+	• Serverless machine learning-powered business intelligence service to create interactive dashboards
+	• Integrated with RDS, Aurora, Athena, Redshift, S3
+• DocumentDB: “Aurora for MongoDB” (JSON – NoSQL database)
+• Amazon QLDB(Quantum Ledger Database): Financial Transactions Ledger (immutable journal, cryptographically verifiable)
+• Amazon Managed Blockchain: managed Hyperledger Fabric & Ethereum blockchains
+• Glue: Managed ETL (Extract Transform Load) and Data Catalog service
+• Database Migration Service: DMS
+	• Quickly and securely migrate databases to AWS, resilient, self healing
+	• The source database remains available
+	• Supports: Homogeneous, Heterogeneous both migrations 
+• Neptune: graph database (Social Network)
+• Timestream: time-series database
 ***************************************************************************************************
 Other Compute
 ---------------------------------------------------------------------------------------------------
@@ -517,3 +698,30 @@ Other AWS Services
 ***************************************************************************************************
 AWS Architecting & Ecosystem
 ---------------------------------------------------------------------------------------------------
+
+***************************************************************************************************
+Some Specials
+---------------------------------------------------------------------------------------------------
+CDK, Elastic Beanstalk, SAM - Behind the scene uses Clodformation
+AWS CloudFormation Stack Sets allows you to provision resources across multiple AWS accounts and regions with a single operation
+--------------------------------------------------------------------------------------------------
+• Cloud Migration Approaches - 
+	• Rehosting (litt-shift)
+	• Replatforming (Ex - Containerising)
+	• Repurchesing (Move to new)
+	• Refactoring (Serverless Computing)
+	• Retiring (End of service)
+	• Retaining (stay on-prem)
+• AWS Migration Hub: Single place to track application migrations across multiple AWS and partner solutions
+• AWS Application Discovery Service: Discover on-premises application inventory and dependencies
+• AWS Control Tower: Easiest way to set up and govern a secure multi-account AWS environment (creates your landing zone using AWS Organizations)
+• AWS Application Migration Service (MGN): Lift and shift applications to AWS. Earlier version: AWS Server Migration Service (AWS SMS)
+• AWS Mainframe Modernization: Migrate Mainframe Applications to AWS
+--------------------------------------------------------------------------------------------------
+AWS DataSync - 
+AWS Data Pipeline - 
+AWS Data Migration Service - 
+AWS Schema Conversion Tool - 
+Serverless Application Model (SAM) - 
+AWS OpsWorks (configuration management) - 
+--------------------------------------------------------------------------------------------------
