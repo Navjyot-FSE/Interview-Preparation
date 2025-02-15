@@ -97,6 +97,23 @@ Cloud Web Deplyoment = EC2 + EBS + ELB + ASG
 	• Dedicated Hosts – book an entire physical server, control instance placement
 	• Dedicated Instances – no other customers will share your hardware
 	• Capacity Reservations – reserve capacity in a specific AZ for any duration
+
+• Some Special: 
+	• AWS GuardDuty – Threat Detection
+		Purpose: Identifies potential security threats in your AWS environment.
+		How it Works: 
+			Uses machine learning, anomaly detection, and threat intelligence to detect malicious activity.
+	• AWS Inspector – Vulnerability Management
+		Purpose: Finds security vulnerabilities in EC2 instances and container images (ECR).
+		How it Works:
+			Performs automated security scans.
+			Checks instances and images against known CVEs (Common Vulnerabilities and Exposures).
+			Identifies missing patches and insecure configurations.
+	• Amazon Detective – Security Investigation
+		Purpose: Helps investigate and analyze security incidents.
+		How it Works:
+			Collects and correlates logs from GuardDuty, VPC Flow Logs, and CloudTrail.
+			Uses AI and visualizations to show connections between events.
 ***************************************************************************************************
 EC2 Storage
 ---------------------------------------------------------------------------------------------------
