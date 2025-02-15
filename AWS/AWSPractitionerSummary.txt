@@ -708,13 +708,17 @@ Advanced Identity
 • Organizations: Manage multiple accounts
 • Security Token Service (STS): Temporary, limited-privileges credentials to access AWS resources
 • Cognito: Create a database of users for your mobile & web applications (Login with Facebook, Google, Twitter…)
-	- User Pools
-	- Identity pools
+	• User Pools / Identity pools
+	• Use Amazon Cognito for handling individual app user authentication (social login, app access, federated authentication).
 • Directory Services: (Managed service)Provide AWS access to on-premise users without IAM users
-	• AWS Managed Microsoft AD (5000+ users) (trust connection)
-	• AD Connector (Use existing on Premise direcory)
+	• AWS Managed Microsoft AD (5000+ users) (Trust connection)
+		• Fully managed, cloud-native Microsoft Active Directory (AD) that integrates seamlessly with other AWS services.
+	• AD Connector (Uses existing on Premise direcory)
+		• Directory gateway that allows your AWS apps to connect to your on-premises Microsoft Active Directory without needing to replicate directory data in the cloud.
 	• Simple AD (less than 5000 users) (proxy connection)
+		• Lightweight, low-cost directory service built on Samba 4, designed for simpler directory needs.
 • IAM Identity Center(successor to AWS SSO): one login for multiple AWS accounts & applications.
+	• Use IAM Identity Center for managing access to AWS and third-party apps at the organization level (SSO, role-based access).
 ***************************************************************************************************
 Other AWS Services
 ---------------------------------------------------------------------------------------------------
