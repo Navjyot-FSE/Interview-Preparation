@@ -242,7 +242,7 @@ Databases
 	• The source database remains available
 	• Supports: Homogeneous, Heterogeneous both migrations 
 • Neptune: graph database (Social Network)
-• Timestream: time-series database
+• Timestream: time-series database (Share Price with time, Train location at what time, GPS trackings saves etc)
 ***************************************************************************************************
 Other Compute
 ---------------------------------------------------------------------------------------------------
