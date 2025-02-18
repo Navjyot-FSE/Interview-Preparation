@@ -708,29 +708,34 @@ Account Management, Billing & Support
 			• Operational Excellence
 		• Business or Enterprise AWS support plan provides over 50 checks (Paid)
 	• AWS Support Plans Pricing
-
-								Basic				Developer				Business					Enterprise
-
-		AWS Trusted Advisor 	7 core checks		7 core checks			All checks					All checks
-
-		Account Assistance		X					X						X							Concierge Support Team
-
-		Technical Account 		X					X						X							Designated Technical Account Manager (TAM) to
-																										pro-actively monitor your environment and assist
-																										with optimization and coordinate access to
-																										programs and AWS experts
-		Management (TAM)
-
-		COST					Free				$29+					$100+						$15,000+	
-
-		Technical Support		24x7 access to		Business hours email	24x7 phone, email, and		24x7 phone, email, and
-								customer service	access to Cloud			chat access to Cloud		chat access to Cloud
-								and forums			Support Associates		Support Engineers			Support Engineers
-													Unlimited cases / 1		Unlimited cases /			Unlimited cases /
-													primary contact			unlimited contacts (IAM		unlimited contacts (IAM
-																			supported)					supported)
-
-		Response Times			NA					12 hrs					1 hr						15min
+		• Basic Plan (Free)
+			• AWS Trusted Advisor: 7 core checks
+			• Account Assistance: No
+			• Technical Account Management: No
+			• Cost: Free
+			• Technical Support: 24x7 access to customer service and forums
+			• Response Time: N/A
+		• Developer Plan ($29+/month)
+			• AWS Trusted Advisor: 7 core checks
+			• Account Assistance: No
+			• Technical Account Management: No
+			• Cost: $29+
+			• Technical Support: Business hours email access to Cloud Support Associates, 1 primary contact, Unlimited cases
+			• Response Time: 12 hours
+		• Business Plan ($100+/month)
+			• AWS Trusted Advisor: All checks
+			• Account Assistance: Yes
+			• Technical Account Management: Yes
+			• Cost: $100+
+			• Technical Support: 24x7 phone, email, and chat access to Cloud Support Engineers, Unlimited contacts (IAM supported) Unlimited cases
+			• Response Time: 1 hour
+		• Enterprise Plan ($15,000+/month)
+			• AWS Trusted Advisor: All checks
+			• Account Assistance: Concierge Support Team
+			• Technical Account Management: Designated TAM to proactively monitor your environment, assist with optimization, coordinate access to programs and AWS experts
+			• Cost: $15,000+
+			• Technical Support: 24x7 phone, email, and chat access to Cloud Support Engineers, Unlimited contacts (IAM supported), Unlimited cases
+			• Response Time: 15 minutes
 	• Billing and Costing Tools – Summary
 		• Compute Optimizer: recommends resources’ configurations to reduce cost
 		• Pricing Calculator: cost of services on AWS
@@ -797,3 +802,27 @@ AWS Schema Conversion Tool -
 Serverless Application Model (SAM) - 
 AWS OpsWorks (configuration management) - 
 --------------------------------------------------------------------------------------------------
+• AWS Support Plans Pricing
+
+						Basic				Developer				Business					Enterprise
+
+AWS Trusted Advisor 	7 core checks		7 core checks			All checks					All checks
+
+Account Assistance		X					X						X							Concierge Support Team
+
+Technical Account 		X					X						X							Designated Technical Account Manager (TAM) to
+																								pro-actively monitor your environment and assist
+																								with optimization and coordinate access to
+																								programs and AWS experts
+Management (TAM)
+
+COST					Free				$29+					$100+						$15,000+	
+
+Technical Support		24x7 access to		Business hours email	24x7 phone, email, and		24x7 phone, email, and
+						customer service	access to Cloud			chat access to Cloud		chat access to Cloud
+						and forums			Support Associates		Support Engineers			Support Engineers
+											Unlimited cases / 1		Unlimited cases /			Unlimited cases /
+											primary contact			unlimited contacts (IAM		unlimited contacts (IAM
+																	supported)					supported)
+
+Response Times			NA					12 hrs					1 hr						15min
