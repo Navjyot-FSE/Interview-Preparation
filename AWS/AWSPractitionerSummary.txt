@@ -221,6 +221,11 @@ Databases
 	• SQL interface for performing the queries
 	• Automatically provisions and scales data warehouse underlying capacity
 	• Use cases: Reporting, dashboarding applications, real-time analytics…
+	• Amazon Redshift Spectrum 
+		• Run queries directly against S3 without worrying about loading entire data from S3 into a data warehouse. Scale compute and storage independently.
+		• Athena vs Redshift Spectrum
+			• Amazon Athena - Quick ad-hoc queries without provisioning a compute cluster (serverless)
+			• Amazon Redshift Spectrum - is recommended if you are executing queries frequently against structured data
 • Hadoop Cluster: EMR(Elastic MapReduce)
 	• Helps creating Hadoop clusters (Big Data) to analyze and process vast amount of data
 	• Clusters can be made of hundreds of EC2 instances
@@ -243,6 +248,8 @@ Databases
 	• Supports: Homogeneous, Heterogeneous both migrations 
 • Neptune: graph database (Social Network)
 • Timestream: time-series database (Share Price with time, Train location at what time, GPS trackings saves etc)
+• Amazon Keyspaces - Serverless Cassandra-compatible Column-family database
+
 ***************************************************************************************************
 Other Compute
 ---------------------------------------------------------------------------------------------------
@@ -414,6 +421,7 @@ Cloud Integration
 • Amazon MQ: managed message broker for ActiveMQ and RabbitMQ in the cloud (MQTT, AMQP.. protocols)
 	• When migrating to the cloud, instead of re-engineering the application to use SQS and SNS, we can use Amazon MQ 
 	• Amazon MQ is a managed message broker service for ActiveMQ and RabbitMQ.
+• Amazon Managed Streaming for Apache Kafka (Amazon MSK) - Managed Kafka Service in AWS
 ***************************************************************************************************
 Cloud Monitoring 
 ---------------------------------------------------------------------------------------------------
@@ -580,23 +588,29 @@ Security & Compliance
 ***************************************************************************************************
 Machine Learning
 ---------------------------------------------------------------------------------------------------
-• Rekognition : Face detection, labeling, celebrity recognition
-• Transcribe: Audio to Text (ex: subtitles) 
-• Polly: Text to Audio 
-• Translate: Translations (Translate localize content for international users)
-• Lex: Build conversational bots – chatbots/call center bots
+• Amazon Comprehend - Analyze Unstructured Text files 
+	• For analyzing a large collection of customer reviews to determine sentiment and key topics, which pre-trained AWS service is the most effective?
+• Amazon Rekognition : Face detection, labeling, celebrity recognition
+• Amazon Transcribe: Audio to Text (ex: subtitles) 
+• Amazon Polly: Text to Audio 
+• Amazon Translate: Translations (Translate localize content for international users)
+• Amazon Lex: Build conversational bots – chatbots/call center bots
 	• Same technology that powers Alexa
-• Connect: Cloud contact center 
+• Amazon Connect: Cloud contact(or call) center 
 	• Receive calls, create contact flows, cloud-based virtual contact center
-•  : Natural Language Processing(NLP)
+	• A call center looking to provide cloud-based customer support with easy scalability
+• Amazon Natural Language Processing(NLP)
 	• Analyze customer interactions (emails) to find what leads to a positive or negative experience
-• SageMaker: Machine Learning for every developer and data scientist 
-• Forecast: Build highly accurate forecasts (Ex: predict the future sales of a raincoat)
-• Kendra: ML-powered search engine 
+• Amazon SageMaker: Machine Learning for every developer and data scientist, 
+	1. AutoML
+	2. (BYOM) Buld your own Model
+• Amazon Forecast: Build highly accurate forecasts (Ex: predict the future sales of a raincoat)
+• Amazon Kendra: ML-powered search engine 
 	• Extract answers from within a document (text, pdf, HTML, PowerPoint, MS Word, FAQs…)
 	• S3/RDS/Google Drive/MS OneDrive/Server Now etc
-• Personalize: Real-Time personalized recommendations (Example: personalized product recommendations)
-• Textract: Automatically extracts text, handwriting, and data from any scanned documents using AI and ML (e.g. - old hand writen invoices to tables)
+• Amazon Personalize: Real-Time personalized recommendations (Example: personalized product recommendations)
+• Amazon Textract: Automatically extracts text, handwriting, and data from any scanned documents using AI and ML (e.g. - old hand writen invoices to tables)
+• Amazon Fraud Detector - Detect online fraud faster
 ***************************************************************************************************
 Account Management, Billing & Support
 ---------------------------------------------------------------------------------------------------
@@ -771,10 +785,176 @@ Advanced Identity
 ***************************************************************************************************
 Other AWS Services
 ---------------------------------------------------------------------------------------------------
-
+• Amazon WorkSpaces: Managed Desktop as a Service (DaaS) solution to easily provision Windows or Linux desktops
+	• Great to eliminate management of on-premise VDI
+	• Secured data – integrates with KMS
+	• Pay-as-you-go service with monthly or hourly rates
+• Amazon AppStream 2.0: Desktop Application Streaming Service
+	• The application is delivered from within a web browser
+	• Amazon AppStream 2.0 vs WorkSpaces
+		• Workspaces
+			• Fully managed VDI and desktop available
+			• The users connect to the VDI and open native or WAM applications
+			• Workspaces are on-demand or always on
+		• AppStream 2.0
+			• Stream a desktop application to web browsers (no need to connect to a VDI)
+			• Works with any device (that has a web browser)
+			• Allow to configure an instance type per application type (CPU, RAM, GPU)
+• AWS IoT Core: AWS IoT Core allows you to easily connect IoT devices to the AWS Cloud
+	• Serverless, secure & scalable to billions of devices and trillions of messages
+	• Build IoT applications that gather, process, analyze, and act on data
+• Amazon Elastic Transcoder	(deprecated on 2023)
+	• Elastic Transcoder is used to convert media files stored in S3 into media files in the formats required by consumer playback devices (phones etc..)
+	• convert media files, like videos and audio, from one format to another.
+	• The service was designed to simplify the process of transcoding, so users could easily handle video content for different devices, screen resolutions, and other requirements.
+• AWS AppSync: Store and sync data across mobile and web apps in real-time
+	• Makes use of GraphQL (mobile technology from Facebook)
+	• Client Code can be generated automatically
+	• Integrations with DynamoDB / Lambda
+• AWS Amplify (Hint: Full stack)
+	• A set of tools and services that helps you develop and deploy scalable full stack web and mobile applications
+	• Authentication, Storage, API (REST, GraphQL), CI/CD, PubSub, Analytics, AI/ML Predictions, Monitoring, Source Code from AWS, GitHub, etc…
+• AWS Infrastructure Composer (Hint: Drag & Drop Cloudformation)
+	• Visually design and build serverless applications quickly on AWS
+	• Deploy AWS infrastructure code without needing to be an expert in AWS
+	• Configure how your resources interact with each other
+	• Generates Infrastructure as Code (IaC) using CloudFormation
+	• Ability to import existing CloudFormation / SAM templates to visualize them
+• AWS Device Farm (Hint: farm of so many devices to test your application)
+	• Fully-managed service that tests your web and mobile apps against desktop browsers, real mobile devices, and tablets
+	• Run tests concurrently on multiple devices (speed up execution)
+	• Ability to configure device settings (GPS, language, Wi-Fi, Bluetooth, …)
+• AWS Backup
+	• Fully-managed service to centrally manage and automate backups across AWS services
+	• On-demand and scheduled backups
+	• Supports PITR (Point-in-time Recovery)
+	• Retention Periods, Lifecycle Management, Backup Policies, …
+	• Cross-Region Backup
+	• Cross-Account Backup (using AWS Organizations)
+• Disaster Recovery Strategies
+	• Backup and Restore (Low Cost, High Recovery Time)
+		• Description: 
+			In this model, data is regularly backed up to Amazon S3, Amazon Glacier, or other storage services. 
+			In the event of a disaster, the data is restored from the backup and the application is brought back online.
+		• Use Case: Suitable for non-mission-critical applications where recovery time is not as urgent.
+	• Pilot Light (Medium Cost, Medium Recovery Time)
+		• Description: 
+			In this strategy, a minimal version of your environment (the "pilot light") is always running in the cloud. 
+			This includes the core infrastructure and the basic data needed to recover. 
+			In the event of a disaster, you can quickly scale up the pilot light environment to full capacity.
+		• Use Case: Useful for applications that require more availability but cannot afford the cost of keeping a fully replicated environment running.
+	• Warm Standby (Higher Cost, Faster Recovery)
+		• Description: 
+			This strategy involves running a scaled-down version of your full environment in AWS, which is always on and available. 
+			In case of a disaster, you can scale up the infrastructure quickly to handle full production load.
+		• Use Case: Ideal for applications that need to minimize downtime but can tolerate some cost for a smaller running infrastructure.
+	• Hot Standby / Multi-Site (Highest Cost, Instant Recovery)
+		• Description: 
+			The hot standby strategy maintains a fully operational copy of your environment in AWS, fully synchronized with your primary data center. 
+			In the event of a failure, traffic is instantly routed to the backup site with minimal interruption.
+		• Use Case: Critical applications where zero downtime is essential, such as financial systems, healthcare systems, or e-commerce platforms with heavy customer traffic.
+	• Cross-Region Disaster Recovery
+		• Description: 
+			This strategy involves replicating your infrastructure and data across multiple AWS regions. 
+			If one region fails, your workloads can failover to another AWS region with minimal disruption.
+		• Use Case: High-availability applications that need to survive regional outages, such as global e-commerce or financial services.
+• AWS Elastic Disaster Recovery (DRS): 
+	• Quickly and easily recover your physical, virtual, and cloud-based servers into AWS
+	• Continuous block-level replication for your servers
+	• Protect your most critical database (MySql/SQL Server/Oracle)
+	• is a managed disaster recovery service that provides continuous replication, failover automation, and recovery orchestration
+	• Support both on-premises and AWS workloads.
+• AWS DataSync: Move large amount of data from on-premises to AWS
+	• Can synchronize to: Amazon S3 (any storage classes – including Glacier), Amazon EFS, Amazon FSx for Windows
+	• Replication tasks can be scheduled hourly, daily, weekly
+	• The replication tasks are incremental after the first full load
+• Cloud Migration Strategies: The 7Rs
+	• Rehost (Lift and Shift): Move applications and data to the cloud with minimal changes, maintaining the same architecture and design.
+	• Replatform (Lift and Reshape): Some optimizations for better performance or cost-efficiency during migration without changing the core architecture.
+	• Repurchase (Drop and Shop): Replace legacy applications with cloud-native alternatives (e.g., switching to SaaS solutions).
+	• Refactor (Rearchitect): Redesign and rebuild applications to fully leverage cloud-native features, such as scalability and flexibility.
+	• Retire: Decommission outdated or obsolete applications that are no longer needed or are redundant in the cloud environment.
+	• Retain: Keep certain applications on-premises due to specific requirements (e.g., compliance, latency).
+	• Rebuild: Completely rebuild applications from scratch using cloud-native services and architectures.
+• AWS Application Discovery Service
+	• Plan migration projects by gathering information about on-premises data centers
+	• Server utilization data and dependency mapping are important for migrations
+• AWS Application Migration Service (MGN)
+	• Lift-and-shift (rehost) solution which simplify migrating applications to AWS
+	• Converts your physical, virtual, and cloud-based servers to run natively on AWS
+	• Supports wide range of platforms, Operating Systems, and databases
+• AWS Migration Evaluator
+	• Helps you build a data-driven business case for migration to AWS
+	• Provides a clear baseline of what your organization is running today
+	• Install Agentless Collector to conduct broad-based discovery
+	• Take a snapshot of on-premises foot-print, server dependepncies, …
+	• Analyze current state, define target state, then develop migration plan
+• AWS Migration Hub
+	• Central location to collect servers and applications inventory data for the assessment, planning, and tracking of migrations to AWS
+	• Helps accelerate your migration to AWS, automate lift-and-shift
+	• AWS Migration Hub Orchestrator 
+		– provides pre-built templates to save time and effort migrating enterprise apps (e.g., SAP, Microsoft SQL Server…)
+	• Supports migrations status updates from Application Migration Service (MGN) and Database Migration Service (DMS)
+• AWS Mainframe Modernization: Migrate Mainframe Applications to AWS
+• AWS Fault Injection Simulator (FIS)
+	• A fully managed service for running fault injection experiments on AWS workloads
+	• Based on Chaos Engineering 
+		– stressing an application by creating disruptive events (e.g., sudden increase in CPU or memory)
+		– observing how the system responds, and implementing improvements
+	• Helps you uncover hidden bugs and performance bottlenecks
+	• Supports the following AWS services: EC2, ECS, EKS, RDS…
+	• Use pre-built templates that generate the desired disruptions
+• AWS Step Functions 
+	• Build serverless visual workflow to orchestrate your Lambda functions
+	• Features: sequence, parallel, conditions, timeouts, error handling, …
+	• Can integrate with EC2, ECS, On-premises servers, API Gateway, SQS queues, etc 
+	• Possibility of implementing human approval feature
+	• Use cases: order fulfillment, data processing, web applications, any workflow
+	• Status[In Progress, Succeeded, Failed, Canceled, Caught Error]
+• AWS Ground Station
+	• Fully managed service that lets you control satellite communications, process data, and scale your satellite operations
+	• Provides a global network of satellite ground stations near AWS regions
+	• Allows you to download satellite data to your AWS VPC within seconds
+	• Send satellite data to S3 or EC2 instance
+	• Use cases: weather forecasting, surface imaging, communications, video broadcasts
+• Amazon Pinpoint (Hint: SMS)
+	• Scalable 2-way (outbound/inbound) marketing communications service
+	• Supports email, SMS, push, voice, and in-app messaging
+	• Ability to segment and personalize messages with the right content to customers
+	• Possibility to receive replies
+	• Scales to billions of messages per day
+	• Use cases: run campaigns by sending marketing, bulk, transactional SMS messages
+	• Versus Amazon SNS or Amazon SES
+	• In SNS & SES you managed each message's audience, content, and delivery schedule
+	• In Amazon Pinpoint, you create message templates, delivery schedules, highly-targeted segments, and full campaigns
+• Amazon SES (Simple Email Service) is a cost-effective, scalable email sending service that allows businesses to send and receive emails.
+	• It's primarily used for transactional emails (e.g., order confirmations) and marketing campaigns, providing high deliverability and integration with other AWS services.
+	• It also includes features like email tracking, bounce handling, and content filtering.
+• AWS License Manager - Manage your soware licenses from vendors such as Microso, SAP, Oracle, and IBM across AWS and on-premises environments
+• Amazon OpenSearch Service - Perform interactive log analytics, realtime application monitoring, website search (ELK stack)
+• Amazon Managed Service for Prometheus: 
+	• Fully managed service for Prometheus [Monitoring & alerting for containerized applications (Amazon EKS, Amazon ECS)]
+	• Integrates well with Graphana
+• Amazon Managed Grafana 
+	• Fully managed service for Grafana Visualize and analyze your metrics, logs, and traces
+	• Integrate with multiple data sources in your observability stack (CloudWatch, Amazon Managed Service for Prometheus, Amazon Elasticsearch/OpenSearch)!
+• AWS Proton - Enhanced IaaC for serverless & containerized applications
+• AWS Data Exchange
+	• Securely find and use third-party data in the cloud.
+	• Ideal for organizations that need access to a diverse range of datasets.
+	• Example Datasets: 20 Years of End-of-Day Stock Data for Top 10 US Companies by Market Cap, ShareThis Consumer Behavior & Interest Data
+• AWS Distro for OpenTelemetry: AWS-supported OpenTelemetry dist.
+	• Instrument your apps with it > Automate all telemetry (metrics, logs, and traces)
+• AWS Launch Wizard 
+	• A business wanting to deploy (Microsoft SQL Server Always On or HANA based SAP systems or ..) on AWS but unsure about the optimal resources and configurations
 ***************************************************************************************************
 AWS Architecting & Ecosystem
 ---------------------------------------------------------------------------------------------------
+
+
+
+
+
 
 ***************************************************************************************************
 Some Specials
@@ -782,20 +962,6 @@ Some Specials
 CDK, Elastic Beanstalk, SAM - Behind the scene uses Clodformation
 AWS CloudFormation Stack Sets allows you to provision resources across multiple AWS accounts and regions with a single operation
 --------------------------------------------------------------------------------------------------
-• Cloud Migration Approaches - 
-	• Rehosting (litt-shift)
-	• Replatforming (Ex - Containerising)
-	• Repurchesing (Move to new)
-	• Refactoring (Serverless Computing)
-	• Retiring (End of service)
-	• Retaining (stay on-prem)
-• AWS Migration Hub: Single place to track application migrations across multiple AWS and partner solutions
-• AWS Application Discovery Service: Discover on-premises application inventory and dependencies
-• AWS Control Tower: Easiest way to set up and govern a secure multi-account AWS environment (creates your landing zone using AWS Organizations)
-• AWS Application Migration Service (MGN): Lift and shift applications to AWS. Earlier version: AWS Server Migration Service (AWS SMS)
-• AWS Mainframe Modernization: Migrate Mainframe Applications to AWS
---------------------------------------------------------------------------------------------------
-AWS DataSync - 
 AWS Data Pipeline - 
 AWS Data Migration Service - 
 AWS Schema Conversion Tool - 
@@ -826,3 +992,4 @@ Technical Support		24x7 access to		Business hours email	24x7 phone, email, and		
 																	supported)					supported)
 
 Response Times			NA					12 hrs					1 hr						15min
+--------------------------------------------------------------------------------------------------
