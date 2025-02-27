@@ -950,12 +950,90 @@ Other AWS Services
 ***************************************************************************************************
 AWS Architecting & Ecosystem
 ---------------------------------------------------------------------------------------------------
-
-
-
-
-
-
+• Well Architected Framework
+	• 6 Pillars
+		1) Operational Excellence - 
+			• The operational excellence pillar focuses on running and monitoring systems, and continually improving processes and procedures. 
+			• Key topics - include automating changes, responding to events, and defining standards to manage daily operations.
+		2) Security
+			• The security pillar focuses on protecting information and systems. 
+			• Key topics - include confidentiality and integrity of data, managing user permissions, and establishing controls to detect security events.
+		3) Reliability
+			• The reliability pillar focuses on workloads performing their intended functions and how to recover quickly from failure to meet demands. 
+			• Key topics - include distributed system design, recovery planning, and adapting to changing requirements.
+		4) Performance Efficiency
+			• The performance efficiency pillar focuses on structured and streamlined allocation of IT and computing resources. 
+			• Key topics - include selecting resource types and sizes optimized for workload requirements, monitoring performance, and maintaining efficiency as business needs evolve.
+		5) Cost Optimization
+			• The cost optimization pillar focuses on avoiding unnecessary costs. 
+			• Key topics - include understanding spending over time and controlling fund allocation, selecting resources of the right type and quantity, and scaling to meet business needs without overspending.
+		6) Sustainability
+			• The sustainability pillar focuses on minimizing the environmental impacts of running cloud workloads. 
+			• Key topics - include a shared responsibility model for sustainability, understanding impact, and maximizing utilization to minimize required resources and reduce downstream impacts. 
+	• AWS Well-Architected Tool - Tool to manage & create infrastructure with Quetions & Ans considering above 6 pillers
+	• AWS Customer Carbon Footprint Tool - 
+		• Track, measure, review, and forecast the Carbon emissions generated from your AWS usage
+		• Helps you meet your own sustainability goals
+• AWS Cloud Adoption Framework (AWS CAF)
+	• Six Perspectives
+		• Business Perspectives
+			• The Business perspective helps ensure that your cloud investments accelerate your digital transformation ambitions and business outcomes. 
+			• Common stakeholders include 
+				chief executive officer (CEO), 
+				chief financial officer (CFO), 
+				chief operations officer (COO), 
+				chief information officer (CIO), 
+				chief technology officer (CTO).
+		• People Perspectives
+			• The People perspective serves as a bridge between technology and business, accelerating the cloud journey to help organizations more rapidly evolve to a culture of continuous growth, learning, and where change becomes business-as-normal, with focus on culture, organizational structure, leadership, and workforce. 
+			• Common stakeholders include CIO, COO, CTO, cloud director, and cross-functional and enterprise-wide leaders.
+		• Governance Perspectives
+			• The Governance perspective helps you orchestrate your cloud initiatives while maximizing organizational benefits and minimizing transformation-related risks. 
+			• Common stakeholders include chief transformation officer, CIO, CTO, CFO, chief data officer (CDO), and chief risk officer (CRO).
+		• Platform Perspectives
+			• The Platform perspective helps you build an enterprise-grade, scalable, hybrid cloud platform, modernize existing workloads, and implement new cloud-native solutions. 
+			• Common stakeholders include CTO, technology leaders, architects, and engineers.
+		• Security Perspectives
+			• The Security perspective helps you achieve the confidentiality, integrity, and availability of your data and cloud workloads. 
+			• Common stakeholders include chief information security officer (CISO), chief compliance officer (CCO), internal audit leaders, and security architects and engineers.
+		• Operations Perspectives
+			• The Operations perspective helps ensure that your cloud services are delivered at a level that meets the needs of your business. 
+			• Common stakeholders include infrastructure and operations leaders, site reliability engineers, and information technology service managers.
+	• Transformation Phases
+		• Envision
+			• Identify and prioritize transformation opportunities in line with your strategic objectives. 
+			• Associating your transformation initiatives with key stakeholders and measurable business outcomes will help you demonstrate value as you progress through your transformation journey.
+		• Align
+			• Identify capability gaps and cross-organizational dependencies. 
+			• Doing so will help you create strategies for improving your cloud readiness, ensure stakeholder alignment, and facilitate relevant organizational change management activities.
+		• Launch
+			• Deliver pilots in production and demonstrate incremental business value. 
+			• Pilots should be highly impactful and when successful they will influence future direction. 
+			• Learning from pilots will help you adjust your approach before scaling to full production.
+		• Scale
+			• Expand pilots and business value to desired scale and ensure that the business benefits associated with your cloud investments are realized and sustained.
+	• Transformation Domains
+		• Technology
+			• Migrate and modernize legacy infrastructure, applications, and data and analytics platforms. 
+			• Cloud Value Benchmarking shows that migrating from on-premises to AWS leads to a 27% reduction in cost per user, a 58% increase in VMs managed per admin, a 57% decrease in downtime, and a 34% decrease in security events.
+		• Process
+			• Digitize, automate, and optimize your business operations. 
+			• This may include leveraging new data and analytics platforms to create actionable insights or using machine learning (ML) to improve your customer service experience, employee productivity and decision-making, business forecasting, fraud detection and prevention, and industrial operations.
+		• Organization
+			• Reimagine how your business and technology teams create customer value and meet your strategic intent. 
+			• Organizing your teams around products and value streams while leveraging agile methods to rapidly iterate and evolve will help you become more responsive and customer centric.
+		• Product
+			• Reimagine your business model by creating new value propositions and revenue models. 
+			• Cloud Value Benchmarking shows that adopting AWS leads to a 37% reduction in time-to-market for new features and applications, a 342% increase in code deployment frequency, and a 38% reduction in the time it takes to deploy new code.
+• AWS Right Sizing
+• AWS Ecosystem – Free resources
+• AWS Marketplace
+• AWS Training
+• AWS Professional Services & Partner Network
+• AWS IQ
+• AWS re:Post
+• AWS re:Post – Knowledge Center
+• AWS Managed Services (AMS)
 ***************************************************************************************************
 Some Specials
 ---------------------------------------------------------------------------------------------------
